@@ -1,0 +1,33 @@
+/* 
+    Document   : layout
+    Created on : Apr 9, 2011, 3:06:03 AM
+    Author     : Rana
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+*{
+    padding: 0px ; 
+    margin: 0px;	
+}
+
+#container{
+	position:relative;
+	left:0px;
+	top:0px;
+	margin:0px auto;	
+} 
+
+.content{
+    padding-top: 5px;
+    padding-bottom: 5px; 
+}
+
+.footer{
+    padding-top: 5px;
+}
+

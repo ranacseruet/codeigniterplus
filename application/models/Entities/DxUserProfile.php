@@ -96,7 +96,7 @@ class DxUserProfile
      *
      * @ManyToOne(targetEntity="DxUsers")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="id")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete = "cascade")
      * })
      */
     private $user;

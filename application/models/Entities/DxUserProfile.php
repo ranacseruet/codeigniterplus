@@ -34,13 +34,13 @@ class DxUserProfile
      * @Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
-
+    
     /**
-     * @var integer $cityId
+     * @var string $city
      *
-     * @Column(name="city_id", type="integer", nullable=false)
+     * @Column(name="city_name", type="string", length=255, nullable=false)
      */
-    private $cityId;
+    private $city;
 
     /**
      * @var string $website
@@ -101,13 +101,6 @@ class DxUserProfile
      */
     private $user;
 
-     /**
-     *
-     * @var PdUserExpertises
-     * @OneToMany(targetEntity="PdUserExpertises", mappedBy="userProfile") 
-     */
-    private $userExpertises;
-
     /**
      * Get id
      *
@@ -163,25 +156,25 @@ class DxUserProfile
     }
 
     /**
-     * Set cityId
+     * Set city
      *
-     * @param integer $cityId
+     * @param string $city
      * @return DxUserProfile
      */
-    public function setCityId($cityId)
+    public function setCity($city)
     {
-        $this->cityId = $cityId;
+        $this->city = $city;
         return $this;
     }
 
     /**
-     * Get cityId
+     * Get city
      *
-     * @return integer 
+     * @return GdCities 
      */
-    public function getCityId()
+    public function getCity()
     {
-        return $this->cityId;
+        return $this->city;
     }
 
     /**
@@ -358,25 +351,5 @@ class DxUserProfile
     public function getUser()
     {
         return $this->user;
-    }
-    
-     /**
-     * Get userExpertises
-     *
-     * @return PdUserExpertises 
-     */
-    public function getUserExpertises()
-    {
-        return $this->userExpertises;
-    }
-    
-     /**
-     * Get userExpertises
-     *
-     * @return PdUserExpertises 
-     */
-    public function setUserExpertises(\PdUserExpertises $userExpertise = null)
-    {
-        $this->userExpertises = $userExpertise;
     }
 }

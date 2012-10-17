@@ -1,15 +1,29 @@
 <?php
-class User_Profile extends CI_Model 
-{
-	function __construct()
-	{
-		parent::__construct();
+require_once(APPPATH."models/Entities/DxUserProfile.php");
 
-		$this->_prefix = $this->config->item('DX_table_prefix');		
-		$this->_table = $this->_prefix.$this->config->item('DX_user_profile_table');
-	}
-	
-	function create_profile($user_id)
+use \DxUserProfile;
+
+
+class User_Profile extends My_DModel  
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->init("DxUserProfile",$this->doctrine->em);
+    }
+
+    function delete_profile($user_id)
+    {
+        $entity = $this->em->getPartialReference($this->entity, $user_id);
+        $this->em->remove($entity);
+        $this->em->flush();
+
+        return TRUE;
+    }
+}
+  /*.........From here no function called......May be in future it would used.....................*/ 
+    /*
+        function create_profile($user_id)
 	{
 		$this->db->set('user_id', $user_id);
                 //$this->db->set('city_id', "1");//Rana: Default For test purpose
@@ -34,12 +48,5 @@ class User_Profile extends CI_Model
 		$this->db->where('user_id', $user_id);
 		return $this->db->update($this->_table, $data);
 	}
-
-	function delete_profile($user_id)
-	{
-		$this->db->where('user_id', $user_id);
-		return $this->db->delete($this->_table);
-	}
-}
-
+*/
 ?>

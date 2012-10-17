@@ -21,6 +21,7 @@ class Home extends MY_Controller
     {
         parent::__construct();
         $this->load->model("messagemodel");
+        $this->load->language("message");
     }
      
     /**
@@ -63,7 +64,7 @@ class Home extends MY_Controller
                     $message = $this->mapper->formToMessage($this->input,$data["contact_form"],null);
                     $this->messagemodel->save($message);
                     
-                    $data["status"]->message = "contact data sent successfully";
+                    $data["status"]->message = $this->lang->line("message_sent");
                     $data["status"]->success = TRUE;
                 }
                 else{
@@ -78,6 +79,25 @@ class Home extends MY_Controller
         {
             log_message("error", $err->getMessage());
             return show_error($err->getMessage());
+        }
+    }
+    
+    function generate_schema(){
+        $this->em = $this->doctrine->em;
+        
+        $tool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
+        
+        
+        $cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory();
+        $cmf->setEntityManager($this->em);
+        $metadata = $cmf->getAllMetadata();
+        
+        $queries = $tool->getCreateSchemaSql($metadata);
+        
+        echo "Total queries: ".count($queries)."<br /><br />";
+        for($i=0; $i<count($queries);$i++){
+            $this->db->query($queries[$i]);
+            echo $queries[$i]."<br /><br />Execution Successfull: ".($i+1)."<br /><br />";
         }
     }
 

@@ -1,9 +1,18 @@
-<?php
-class Backend extends Controller
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+* @property CI_Loader $load
+* @property CI_Form_validation $form_validation
+* @property CI_Input $input
+* @property CI_Email $email
+* @property Mysmarty $mysmarty 
+* @property DX_Auth  $dx_auth
+*/
+class Backend extends MY_Controller
 {
+
 	function Backend()
 	{
-		parent::Controller();
+		parent::__construct();
 		
 		$this->load->library('Table');
 		$this->load->library('Pagination');

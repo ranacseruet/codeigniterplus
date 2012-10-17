@@ -130,7 +130,7 @@ class Auth extends MY_Controller
 				else
 				{						
 					// Default is we don't show captcha until max login attempts eceeded
-					$data['show_captcha'] = FALSE;
+					$this->data['show_captcha'] = FALSE;
 				
 					// Show captcha if login attempts exceed max attempts in config
 					if ($this->dx_auth->is_max_login_attempts_exceeded())
@@ -139,25 +139,24 @@ class Auth extends MY_Controller
 						//$this->dx_auth->captcha();
 						
 						// Set view data to show captcha on view file
-						//$data['show_captcha'] = TRUE;
+						//$this->data['show_captcha'] = TRUE;
 					}
 					
-                                        $this->mysmarty->assign('forgot_password_uri',$this->dx_auth->forgot_password_uri);
-                                        $this->mysmarty->assign('register_uri',$this->dx_auth->register_uri);
-                                        $this->mysmarty->assign('allow_registration',$this->dx_auth->allow_registration);
-					$this->mysmarty->assign('show_captcha',$data['show_captcha']);
-					$this->mysmarty->assign('error_msg',$this->dx_auth->get_auth_error());
+                                        $this->data['forgot_password_uri'] = $this->dx_auth->forgot_password_uri;
+                                        $this->data['register_uri'] = $this->dx_auth->register_uri;
+                                        $this->data['allow_registration'] = $this->dx_auth->allow_registration;
+					if($this->dx_auth->get_auth_error()){
+                                            $this->data['status']->message = $this->dx_auth->get_auth_error();
+                                            $this->data['status']->success = FALSE;
+                                        }
 					//$this->mysmarty->assign('captcha_error',form_error('captcha'));					
-					//$this->mysmarty->view($this->dx_auth->login_view);
-                                        return $this->view();
-					// Load login page view
-					//$this->load->view($this->dx_auth->login_view, $data);
+                                        return $this->view($this->data);
 				}
 			}
 		}
 		else
 		{
-			$data['auth_message'] = 'You are already logged in.';
+			$this->data['auth_message'] = 'You are already logged in.';
 			$this->load->view($this->dx_auth->logged_in_view, $data);
 		}
 	}
@@ -166,7 +165,7 @@ class Auth extends MY_Controller
 	{
 		$this->dx_auth->logout();
 		
-		//$data['auth_message'] = 'You have been logged out.';		
+		//$this->data['auth_message'] = 'You have been logged out.';		
 		//$this->load->view($this->dx_auth->logout_view, $data);
                
 	}
@@ -190,26 +189,25 @@ class Auth extends MY_Controller
 
 			// Run form validation and register user if it's pass the validation
 			if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
-			{	
+			{
+                                $this->data['status']->success = TRUE;
+                                
 				// Set success message accordingly
 				if ($this->dx_auth->email_activation)
 				{
-					$data['status']->message = 'You have successfully registered. Check your email address to activate your account.';       
-				}
+					$this->data['status']->message = 'You have successfully registered. Check your email address to activate your account.';
+                                }
 				else
 				{					
-					$data['status']->message = 'You have successfully registered. You can now Login.';
+					$this->data['status']->message = 'You have successfully registered. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
 				}
-				$data['status']->success = true;
-                                
+				
                                 $this->mysmarty->assign('confirm_password_error',form_error('confirm_password'));
 				$this->mysmarty->assign('email_error',form_error('email'));
 				$this->mysmarty->assign('show_captcha',FALSE);
                                 
 				// Load registration success page
-				//$this->load->view($this->dx_auth->register_success_view, $data);
-                                return $this->view($data);
-                                //redirect('', 'location');
+                                return $this->view();
 			}
 			else
 			{
@@ -230,12 +228,12 @@ class Auth extends MY_Controller
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
 		{
-			$data['auth_message'] = 'Registration has been disabled.';
+			$this->data['auth_message'] = 'Registration has been disabled.';
 			$this->load->view($this->dx_auth->register_disabled_view, $data);
 		}
 		else
 		{
-			$data['auth_message'] = 'You have to logout first, before registering.';
+			$this->data['auth_message'] = 'You have to logout first, before registering.';
 			$this->load->view($this->dx_auth->logged_in_view, $data);
 		}
 	}
@@ -267,11 +265,11 @@ class Auth extends MY_Controller
 				// Set success message accordingly
 				if ($this->dx_auth->email_activation)
 				{
-					$data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
+					$this->data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
 				}
 				else
 				{					
-					$data['auth_message'] = 'You have successfully registered. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+					$this->data['auth_message'] = 'You have successfully registered. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
 				}
 				
 				// Load registration success page
@@ -285,12 +283,12 @@ class Auth extends MY_Controller
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
 		{
-			$data['auth_message'] = 'Registration has been disabled.';
+			$this->data['auth_message'] = 'Registration has been disabled.';
 			$this->load->view($this->dx_auth->register_disabled_view, $data);
 		}
 		else
 		{
-			$data['auth_message'] = 'You have to logout first, before registering.';
+			$this->data['auth_message'] = 'You have to logout first, before registering.';
 			$this->load->view($this->dx_auth->logged_in_view, $data);
 		}
 	}
@@ -304,36 +302,45 @@ class Auth extends MY_Controller
 		// Activate user
 		if ($this->dx_auth->activate($username, $key)) 
 		{
-			$data['auth_message'] = 'Your account have been successfully activated. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+			$this->data['auth_message'] = 'Your account have been successfully activated. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
 			$this->load->view($this->dx_auth->activate_success_view, $data);
 		}
 		else
 		{
-			$data['auth_message'] = 'The activation code you entered was incorrect. Please check your email again.';
+			$this->data['auth_message'] = 'The activation code you entered was incorrect. Please check your email again.';
 			$this->load->view($this->dx_auth->activate_failed_view, $data);
 		}
 	}
 	
 	function forgot_password()
 	{
-		$val = $this->form_validation;
-		
-		// Set form validation rules
-		$val->set_rules('login', 'Username or Email address', 'trim|required|xss_clean');
+            if($this->input->post("reset")){
+                $val = $this->form_validation;
 
-		// Validate rules and call forgot password function
-		if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login')))
-		{
-			$data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
-			$this->load->view($this->dx_auth->forgot_password_success_view, $data);
-		}
-		else
-		{
-			$this->load->view($this->dx_auth->forgot_password_view);
-		}
+                // Set form validation rules
+                $val->set_rules('login', 'Username or Email address', 'trim|required|xss_clean');
+
+
+                // Validate rules and call forgot password function
+                if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login')))
+                {
+                    $this->data['status']->success = TRUE;
+                    $this->data['status']->message = 'An email has been sent to your email with instructions with how to activate your new password.';
+                }
+                else
+                {
+                    $this->data['status']->success = FALSE;
+                    $this->data['status']->message = "Couldn't find email or password. Please try again";
+
+                }
+
+                return $this->view();
+            }
+            return $this->view();     
 	}
 	
 	function reset_password()
+        
 	{
 		// Get username and key
 		$username = $this->uri->segment(3);
@@ -342,12 +349,12 @@ class Auth extends MY_Controller
 		// Reset password
 		if ($this->dx_auth->reset_password($username, $key))
 		{
-			$data['auth_message'] = 'You have successfully reset you password, '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+			$this->data['auth_message'] = 'You have successfully reset you password, '.anchor(site_url($this->dx_auth->login_uri), 'Login');
 			$this->load->view($this->dx_auth->reset_password_success_view, $data);
 		}
 		else
 		{
-			$data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
+			$this->data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
 			$this->load->view($this->dx_auth->reset_password_failed_view, $data);
 		}
 	}
@@ -367,7 +374,7 @@ class Auth extends MY_Controller
 			// Validate rules and change password
 			if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password')))
 			{
-				$data['auth_message'] = 'Your password has successfully been changed.';
+				$this->data['auth_message'] = 'Your password has successfully been changed.';
 				$this->load->view($this->dx_auth->change_password_success_view, $data);
 			}
 			else

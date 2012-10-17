@@ -24,7 +24,7 @@ class CiSessions
     /**
      * @var string $ipAddress
      *
-     * @Column(name="ip_address", type="string", length=16, nullable=false)
+     * @Column(name="ip_address", type="string", length=45, nullable=false)
      */
     private $ipAddress;
 

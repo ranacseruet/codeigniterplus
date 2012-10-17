@@ -1,2 +1,4 @@
 /nbproject/private/
 /application/cache/
+/application/logs/
+/application/models/proxies/

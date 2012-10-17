@@ -73,7 +73,7 @@ class Home extends MY_Controller
                 }
             }
 
-            return $this->view($this->data);
+            return $this->view();;
         }
         catch(Exception $err)
         {

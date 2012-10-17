@@ -68,10 +68,10 @@ class MY_Controller extends CI_Controller
      * @param ArrayObject $data
      * @param bool $template_only
      */
-    function view($data=NULL,$template_only=FALSE)
+    function view($template_only=FALSE)
     {
         //assigns all data as smarty variables. Reduces smarty assignment in controllers
-        if($data != NULL)
+        if($this->data != NULL)
         {
             foreach($data as $key => $value)
             {

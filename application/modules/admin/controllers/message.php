@@ -45,7 +45,7 @@ class Message extends MY_Controller
             
             $messages              = $this->messagemodel->get_by_range($start_record,$config['per_page']);
             $this->data["messages"] = $messages;
-            return $this->view($this->data);             
+            return $this->view();             
         }
         catch (Exception $err)
         {
@@ -99,7 +99,7 @@ class Message extends MY_Controller
             $this->data["message"]       = $this->messagemodel->get($id);
             $this->data["action_url"] = base_url()."admin/message/edit/".$id;
 
-            return $this->view($this->data);
+            return $this->view();
         }
         catch (Exception $err)
         {
@@ -150,7 +150,7 @@ class Message extends MY_Controller
 
             $this->data["action_url"] = base_url()."admin/message/add";
             $this->data["message"]       = new PdContact();
-            return $this->view($this->data);
+            return $this->view();
         }
         catch (Exception $err)
         {

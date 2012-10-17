@@ -150,7 +150,7 @@ class Auth extends MY_Controller
                                             $this->data['status']->success = FALSE;
                                         }
 					//$this->mysmarty->assign('captcha_error',form_error('captcha'));					
-                                        return $this->view($this->data);
+                                        return $this->view();;
 				}
 			}
 		}

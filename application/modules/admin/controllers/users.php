@@ -44,7 +44,7 @@ class USers extends MY_Controller
             
             $this->data["users"]              = $this->usermodel->get_by_range($start_record,$config['per_page']);
 
-            return $this->view($this->data);             
+            return $this->view();             
         }
         catch (Exception $err)
         {

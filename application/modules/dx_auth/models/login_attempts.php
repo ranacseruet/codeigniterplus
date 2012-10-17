@@ -1,38 +1,48 @@
 <?php
-class Login_Attempts extends CI_Model 
+require_once(APPPATH."models/Entities/DxLoginAttempts.php");
+
+use \DxLoginAttempts;
+
+class Login_Attempts extends My_DModel 
 {
-	function __construct()       
-	{
-		parent::__construct();
+    function __construct()       
+    {
+        parent::__construct();
+        $this->init("DxLoginAttempts",$this->doctrine->em);
+    }
 
-		// Other stuff
-		$this->_prefix = $this->config->item('DX_table_prefix');
-		$this->_table = $this->_prefix.$this->config->item('DX_login_attempts_table');
-	}
+    function check_attempts($ip_address)
+    {
+        $criteria=array('ipAddress' => $ip_address);
+        return $this->em->getRepository($this->entity)->findBy($criteria);
+    }
 
-	function check_attempts($ip_address)
-	{
-		$this->db->select('1', FALSE);
-		$this->db->where('ip_address', $ip_address);
-		return $this->db->get($this->_table);
-	}
-	
-	// Increase attempts count
-	function increase_attempt($ip_address)
-	{
-		// Insert new record
-		$data = array(
-			'ip_address' => $ip_address
-		);
+    // Increase attempts count
+    function increase_attempt($ip_address)
+    {
+        $login_attemp=new DxLoginAttempts();
 
-		$this->db->insert($this->_table, $data); 
-	}
-	
-	function clear_attempts($ip_address)
-	{		
-		$this->db->where('ip_address', $ip_address);
-		$this->db->delete($this->_table);
-	}	
+        $login_attemp->setIpAddress($ip_address);
+        $login_attemp->setTime(new DateTime());
+
+        $this->em->persist($login_attemp);
+        $this->em->flush();
+        return TRUE;
+
+    }
+
+    function clear_attempts($ip_address)
+    {
+        $criteria=array('ipAddress' => $ip_address);
+        $entity = $this->em->getRepository($this->entity)->findOneBy($criteria);
+
+        if($entity){
+            $this->em->remove($entity);
+            $this->em->flush();
+        }
+
+        return TRUE;
+    }	
 	
 }
 ?>

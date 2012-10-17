@@ -1,73 +1,95 @@
 <?php
+require_once(APPPATH."models/Entities/DxUserAutologin.php");
 
-class User_Autologin extends CI_Model 
+use \DxUserAutologin;
+
+class User_Autologin extends My_DModel 
 {
-	function __construct()
-	{
-		parent::__construct();
+    function __construct()
+    {
+        parent::__construct();
+        $this->init("DxUserAutologin",$this->doctrine->em);		
+    }
 
-		// Other stuff
-		$this->_prefix = $this->config->item('DX_table_prefix');
-		$this->_table = $this->_prefix.$this->config->item('DX_user_autologin');
-		$this->_users_table = $this->_prefix.$this->config->item('DX_users_table');		
-	}
+    function store_key($key, $user_id)
+    {
+        $user=new DxUserAutologin();
 
-	function store_key($key, $user_id)
-	{
-		$user = array(
-			'key_id' 			=> md5($key),
-			'user_id' 		=> $user_id,
-			'user_agent' 	=> substr($this->input->user_agent(), 0, 149),
-			'last_ip' 		=> $this->input->ip_address()
-		);
+        $user->setKeyId(md5($key));
+        $dxuser=  $this->users->get($user_id);
+        $user->setUser($dxuser);
+        $user->setUserAgent(substr($this->input->user_agent(), 0, 149));
+        $user->setLastIp($this->input->ip_address());
+        $user->setLastLogin(new DateTime());
+        $this->em->persist($user);
+        $this->em->flush();
 
-		return $this->db->insert($this->_table, $user);
-	}
+        return TRUE;
+    }
 
-	function get_key($key, $user_id)
-	{
-		$auto_table = $this->_table;
-		$users_table = $this->_users_table;
-		
-		$this->db->select("$users_table.id");
-		$this->db->select("$users_table.username");
-		$this->db->select("$users_table.role_id");
-		$this->db->from($users_table);		
-		$this->db->join($auto_table, "$auto_table.user_id = $users_table.id");
-		$this->db->where("$users_table.id", $user_id);
-		$this->db->where("$auto_table.key_id", md5($key));
-		
-		return $this->db->get();
-	}
+    function get_key($key, $user_id)
+    {
+        $user=$this->users->get($user_id);
+        $data = array(
+                'keyId'  => md5($key),
+                'user' => $user
+        );
 
-	function delete_key($key, $user_id)
-	{
-		$data = array(
-			'key_id' 	=> md5($key),
-			'user_id' => $user_id
-		);
-		
-		$this->db->where($data);
-		return $this->db->delete($this->_table);
-	}
+        $autologin_user= $this->em->getRepository($this->entity)->findOneBy($data);
+        return $autologin_user->getUser();
+    }
 
-	function clear_keys($user_id)
-	{
-		$this->db->where('user_id', $user_id);
-		return $this->db->delete($this->_table);
-	}
+    function delete_key($key, $user_id)
+    {
+        $user=$this->users->get($user_id);
+        $data = array(
+                'keyId'  => md5($key),
+                'user' => $user
+        );
 
-	function prune_keys($user_id)
-	{
-		$data = array(
-			'user_id'			=> $user_id,
-			'user_agent' 	=> substr($this->input->user_agent(), 0, 149),
-			'last_ip' 		=> $this->input->ip_address()
-		);
+        $entity = $this->em->getRepository($this->entity)->findOneBy($data);
 
-		$this->db->where($data);
-		return $this->db->delete($this->_table);
-	}
+        if($entity){
+            $this->em->remove($entity);
+            $this->em->flush();
+        }
+
+        return TRUE;
+
+    }
+
+    function clear_keys($user_id)
+    {       
+        $user=$this->users->get($user_id);
+        $criteria = array('user' =>$user);
+        $entity = $this->em->getRepository($this->entity)->findOneBy($criteria);
+
+        if($entity){
+            $this->em->remove($entity);
+            $this->em->flush();
+        }
+
+        return TRUE;
+    }
+
+    function prune_keys($user_id)
+    {
+        $user=$this->users->get($user_id);
+        $data = array(
+                'user'	=> $user,
+                'userAgent' => substr($this->input->user_agent(), 0, 149),
+                'lastIp' 	=> $this->input->ip_address()
+        );
+
+        $entity = $this->em->getRepository($this->entity)->findOneBy($data);
+
+        if($entity){
+            $this->em->remove($entity);
+            $this->em->flush();
+        }
+
+        return TRUE;
+    }
 }
 
 ?>

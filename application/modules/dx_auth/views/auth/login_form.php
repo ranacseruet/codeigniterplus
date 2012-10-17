@@ -35,7 +35,7 @@ $confirmation_code = array(
 
 
 <dl>	
-	<dt><?php echo form_label('Username', $username['id']);?></dt>
+	<dt><?php echo form_label('Username', $username['id']);?></dt>vcfdvdfv
 	<dd>
 		<?php echo form_input($username)?>
     <?php echo form_error($username['name']); ?>

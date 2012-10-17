@@ -52,7 +52,7 @@ class Home extends MY_Controller
         try
         {
             $forms = $this->config->item("rules");
-            $data["contact_form"] = $forms["contact"];
+            $this->data["contact_form"] = $forms["contact"];
 
             if($this->input->post('submit')){
                 
@@ -61,19 +61,19 @@ class Home extends MY_Controller
                 
                 if($this->formvalidator->isValid("contact")){
                     
-                    $message = $this->mapper->formToMessage($this->input,$data["contact_form"],null);
+                    $message = $this->mapper->formToMessage($this->input,$this->data["contact_form"],null);
                     $this->messagemodel->save($message);
                     
-                    $data["status"]->message = $this->lang->line("message_sent");
-                    $data["status"]->success = TRUE;
+                    $this->data["status"]->message = $this->lang->line("message_sent");
+                    $this->data["status"]->success = TRUE;
                 }
                 else{
-                    $data["status"]->message = validation_errors();
-                    $data["status"]->success = FALSE;
+                    $this->data["status"]->message = validation_errors();
+                    $this->data["status"]->success = FALSE;
                 }
             }
 
-            return $this->view($data);
+            return $this->view($this->data);
         }
         catch(Exception $err)
         {

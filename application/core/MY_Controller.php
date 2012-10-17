@@ -21,6 +21,7 @@ class MY_Controller extends CI_Controller
 {
     //common prefix that will be used for point template/config files
     var $prefix = "PD_";
+     var $data;
     
      /**
      * constructor

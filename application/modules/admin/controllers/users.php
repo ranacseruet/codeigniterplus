@@ -40,11 +40,11 @@ class USers extends MY_Controller
             $config['base_url']          = base_url()."admin/users/index";
             $config['total_rows']        = $this->usermodel->get_count();
             $this->pagination->initialize($config);
-            $data["pagination_helper"]   = $this->pagination;
+            $this->data["pagination_helper"]   = $this->pagination;
             
-            $data["users"]              = $this->usermodel->get_by_range($start_record,$config['per_page']);
+            $this->data["users"]              = $this->usermodel->get_by_range($start_record,$config['per_page']);
 
-            return $this->view($data);             
+            return $this->view($this->data);             
         }
         catch (Exception $err)
         {

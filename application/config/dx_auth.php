@@ -15,7 +15,7 @@
 |
 */
 
-$config['DX_website_name'] = 'CodeigniterPlus';
+$config['DX_website_name'] = 'Your Website';
 $config['DX_webmaster_email'] = 'webmaster@yourhost.com';
 
 /*
@@ -185,7 +185,7 @@ $config['DX_recaptcha_private_key'] = '';
 */
 
 $config['DX_deny_uri'] = '/auth/deny/';
-$config['DX_login_uri'] = '/auth/login/';
+$config['DX_login_uri'] = '/login/';
 $config['DX_banned_uri'] = '/auth/banned/';
 $config['DX_activate_uri'] = '/auth/activate/';
 $config['DX_reset_password_uri'] = '/auth/reset_password/';
@@ -214,8 +214,8 @@ $config['DX_captcha_login'] = FALSE;
 
 // URI Locations
 $config['DX_logout_uri'] = 'user/logout/';
-$config['DX_register_uri'] = 'user/register/';
-$config['DX_forgot_password_uri'] = 'user/forgot_password/';
+$config['DX_register_uri'] = 'register/';
+$config['DX_forgot_password_uri'] = 'forgot_password/';
 $config['DX_change_password_uri'] = '/auth/change_password/';
 $config['DX_cancel_account_uri'] = '/auth/cancel_account/';
 

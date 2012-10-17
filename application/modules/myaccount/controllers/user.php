@@ -20,9 +20,6 @@
 class User extends MY_Controller
 {
     
-     var $upload_path;
-     var $upload_path_url;
-     var $user_id;
      
     /**
      * constructor

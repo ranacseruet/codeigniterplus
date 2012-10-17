@@ -41,11 +41,11 @@ class Message extends MY_Controller
             $config['base_url']          = base_url()."/admin/message/index";
             $config['total_rows']        = $this->messagemodel->get_count();
             $this->pagination->initialize($config);
-            $data["pagination_helper"]   = $this->pagination;
+            $this->data["pagination_helper"]   = $this->pagination;
             
             $messages              = $this->messagemodel->get_by_range($start_record,$config['per_page']);
-            $data["messages"] = $messages;
-            return $this->view($data);             
+            $this->data["messages"] = $messages;
+            return $this->view();             
         }
         catch (Exception $err)
         {
@@ -65,24 +65,24 @@ class Message extends MY_Controller
         try
         {
             $forms                  = $this->config->item("rules");
-            $data["message_form"]      = $forms["contact"];
+            $this->data["message_form"]      = $forms["contact"];
            
             if($this->input->post("submit")){
                 
                 $this->load->library('form_validation');
                 $this->load->helper('form'); 
                 $fv = $this->form_validation;
-                $fv->set_rules($data["message_form"]);
+                $fv->set_rules($this->data["message_form"]);
                 
                 if($fv->run())
                 {
                     $message = $this->messagemodel->get($id); 
                     //print_r($message);exit;
-                    $message = $this->mapper->formToMessage($this->input,$data["message_form"],$message);
+                    $message = $this->mapper->formToMessage($this->input,$this->data["message_form"],$message);
                     if($this->messagemodel->save($message))
                     {
-                        $data["status"]->message = "City saved successfully";
-                        $data["status"]->success = TRUE;
+                        $this->data["status"]->message = "City saved successfully";
+                        $this->data["status"]->success = TRUE;
                     }
                     else
                     {
@@ -91,15 +91,15 @@ class Message extends MY_Controller
                 }
                 else 
                 {
-                    $data["status"]->message = validation_errors();
-                    $data["status"]->success = FALSE;  
+                    $this->data["status"]->message = validation_errors();
+                    $this->data["status"]->success = FALSE;  
                 }
             }
 
-            $data["message"]       = $this->messagemodel->get($id);
-            $data["action_url"] = base_url()."admin/message/edit/".$id;
+            $this->data["message"]       = $this->messagemodel->get($id);
+            $this->data["action_url"] = base_url()."admin/message/edit/".$id;
 
-            return $this->view($data);
+            return $this->view();
         }
         catch (Exception $err)
         {
@@ -119,21 +119,21 @@ class Message extends MY_Controller
         try
         {
             $forms                = $this->config->item("rules");
-            $data["message_form"]    = $forms["contact"];
+            $this->data["message_form"]    = $forms["contact"];
 
             if($this->input->post("submit")){
                 $this->load->library('form_validation');
                 $this->load->helper('form'); 
                 $fv = $this->form_validation;
-                $fv->set_rules($data["message_form"]);
+                $fv->set_rules($this->data["message_form"]);
 
                 if($fv->run())
                 {
-                    $message = $this->mapper->formToMessage($this->input,$data["message_form"]);
+                    $message = $this->mapper->formToMessage($this->input,$this->data["message_form"]);
                     if($this->messagemodel->save($message))
                     {
-                        $data["status"]->message = "Message added successfully";
-                        $data["status"]->success = TRUE;
+                        $this->data["status"]->message = "Message added successfully";
+                        $this->data["status"]->success = TRUE;
                     }
                     else 
                     {
@@ -143,14 +143,14 @@ class Message extends MY_Controller
                 }
                 else 
                 {
-                    $data["status"]->message = validation_errors();
-                    $data["status"]->success = FALSE;  
+                    $this->data["status"]->message = validation_errors();
+                    $this->data["status"]->success = FALSE;  
                 }
             }
 
-            $data["action_url"] = base_url()."admin/message/add";
-            $data["message"]       = new PdContact();
-            return $this->view($data);
+            $this->data["action_url"] = base_url()."admin/message/add";
+            $this->data["message"]       = new PdContact();
+            return $this->view();
         }
         catch (Exception $err)
         {

@@ -1,6 +1,6 @@
 <fieldset>
 	<legend>Login</legend>
-    {$error_msg}
+
         <form action="{$action_url}" method="post">
             <div class="row">
                 <div class="label"><label for="username">Username</label></div>

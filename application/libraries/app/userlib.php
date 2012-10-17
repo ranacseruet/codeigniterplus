@@ -65,16 +65,7 @@ class Userlib {
         
     }
     
-    public function getUserExpertisesArray($user_id){
-        $myUserExpertises = $this->ci->usermodel->get_profile($user_id)->getUserExpertises();   
-        $myExpertises = array();
-        if(!empty($myUserExpertises)){
-            foreach($myUserExpertises as $myUserExpertise){
-                $myExpertises[] = $myUserExpertise->getExpertise();
-            }
-        }
-        return $myExpertises;
-    }
+    
   
 }
 

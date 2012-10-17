@@ -20,15 +20,16 @@ class DxUserAutologin
      * @GeneratedValue(strategy="NONE")
      */
     private $keyId;
-
+    
     /**
-     * @var integer $userId
+     * @var DxUsers
      *
-     * @Column(name="user_id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @ManyToOne(targetEntity="DxUsers")
+     * @JoinColumns({
+     *   @JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
-    private $userId;
+   private $user;
 
     /**
      * @var string $userAgent
@@ -74,28 +75,28 @@ class DxUserAutologin
         return $this->keyId;
     }
 
-    /**
-     * Set userId
+  /**
+     * Set user
      *
-     * @param integer $userId
-     * @return DxUserAutologin
+     * @param DxUsers $user
+     * @return DxUserProfile
      */
-    public function setUserId($userId)
+    public function setUser(\DxUsers $user = null)
     {
-        $this->userId = $userId;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get userId
+     * Get user
      *
-     * @return integer 
+     * @return DxUsers 
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
-
+    
     /**
      * Set userAgent
      *

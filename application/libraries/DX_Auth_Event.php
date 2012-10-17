@@ -21,7 +21,7 @@ class DX_Auth_Event
 	{
 		// Load models
 		$this->ci->load->model('dx_auth/user_profile', 'user_profile');
-                $this->ci->load->model('dx_auth/users', 'user');
+                $this->ci->load->model('dx_auth/usersmodel', 'user');
 		
 		// Create user profile
 		//$this->ci->user_profile->create_profile($user_id);
@@ -121,5 +121,3 @@ class DX_Auth_Event
 			$this->ci->config->item('DX_website_name'));
 	}
 }
-
-?>

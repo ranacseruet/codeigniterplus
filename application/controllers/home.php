@@ -21,6 +21,7 @@ class Home extends MY_Controller
     {
         parent::__construct();
         $this->load->model("messagemodel");
+        $this->load->language("message");
     }
      
     /**
@@ -51,7 +52,7 @@ class Home extends MY_Controller
         try
         {
             $forms = $this->config->item("rules");
-            $data["contact_form"] = $forms["contact"];
+            $this->data["contact_form"] = $forms["contact"];
 
             if($this->input->post('submit')){
                 
@@ -60,24 +61,43 @@ class Home extends MY_Controller
                 
                 if($this->formvalidator->isValid("contact")){
                     
-                    $message = $this->mapper->formToMessage($this->input,$data["contact_form"],null);
+                    $message = $this->mapper->formToMessage($this->input,$this->data["contact_form"],null);
                     $this->messagemodel->save($message);
                     
-                    $data["status"]->message = "contact data sent successfully";
-                    $data["status"]->success = TRUE;
+                    $this->data["status"]->message = $this->lang->line("message_sent");
+                    $this->data["status"]->success = TRUE;
                 }
                 else{
-                    $data["status"]->message = validation_errors();
-                    $data["status"]->success = FALSE;
+                    $this->data["status"]->message = validation_errors();
+                    $this->data["status"]->success = FALSE;
                 }
             }
 
-            return $this->view($data);
+            return $this->view();;
         }
         catch(Exception $err)
         {
             log_message("error", $err->getMessage());
             return show_error($err->getMessage());
+        }
+    }
+    
+    function generate_schema(){
+        $this->em = $this->doctrine->em;
+        
+        $tool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
+        
+        
+        $cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory();
+        $cmf->setEntityManager($this->em);
+        $metadata = $cmf->getAllMetadata();
+        
+        $queries = $tool->getCreateSchemaSql($metadata);
+        
+        echo "Total queries: ".count($queries)."<br /><br />";
+        for($i=0; $i<count($queries);$i++){
+            $this->db->query($queries[$i]);
+            echo $queries[$i]."<br /><br />Execution Successfull: ".($i+1)."<br /><br />";
         }
     }
 

@@ -13,20 +13,21 @@ About
 	
 Which Library used:
 ------------------
-- DX_Auth 
-- Hybridauth (Authentication login)
-- Doctrine
-- Mysmarty
-- HMVC Facilities
-- Different Language File
+- CodeIgniter Library
+	* DX_Auth 
+	* Hybridauth (Authentication login)
+	* Doctrine
+	* Mysmarty
+	* HMVC Facilities
+	* Different Language File
 
 - Jquery Library
-- Goggle map
-- Steal production
-- Jquery
+* Goggle map
+* Steal production
+* Jquery
 
 - Stylesheet
-		- Blue Print Css
+	*Blue Print Css
 
 
 

@@ -13,22 +13,20 @@ About
 	
 Which Library used:
 ------------------
+- DX_Auth 
+- Hybridauth (Authentication login)
+- Doctrine
+- Mysmarty
+- HMVC Facilities
+- Different Language File
 
- DX_Auth 
- Hybridauth (Authentication login)
- Doctrine
- Mysmarty
- HMVC Facilities
- Different Language File
+- Jquery Library
+- Goggle map
+- Steal production
+- Jquery
 
-
- Jquery Library
-* Goggle map
-* Steal production
-* Jquery
-
-Stylesheet
-		* Blue Print Css
+- Stylesheet
+		- Blue Print Css
 
 
 
@@ -41,3 +39,4 @@ How to Use
 - Crate a database with your given database name in config/database.php file.
 - Run http://your_domain_name/generate_schema for create database table.
 -Every time when you update your entity file in models/entity dirctory just Run the above url for create new schema.
+

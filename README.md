@@ -6,7 +6,8 @@ The Ultimate Codeigniter Enhancements
 About
 -----
 - Author: 
-	* Md. Ali Ahsan Rana 
+	* Md. Ali Ahsan Rana
+
 		Blog: (http://codesamplez.com/)
 
 	* Mahfuja Nilufar
@@ -23,9 +24,9 @@ Which Library used:
 
 
 - Jquery Library
-* Goggle map
-* Steal production
-* Jquery
+        * Goggle map
+        * Steal production
+        * Jquery
 
 
 - Stylesheet

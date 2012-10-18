@@ -23,8 +23,8 @@ Which Library used:
 	* Different Language File
 
 
-- Jquery Library
 
+- Jquery Library
         * Goggle map
         * Steal production
         * Jquery

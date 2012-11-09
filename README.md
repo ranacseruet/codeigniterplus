@@ -22,17 +22,16 @@ Which Library used:
 	* HMVC Facilities
 	* Different Language File
 
-- Jquery Library
-        * Goggle map
-        * Steal production
-        * Jquery
-
 
 - Stylesheet
 	* Blue Print Css
 
 
 
+- Jquery Library
+        * Goggle map
+        * Steal production
+        * Jquery
 
 How to Use
 ----------

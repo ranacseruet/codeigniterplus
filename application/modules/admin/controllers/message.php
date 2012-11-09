@@ -8,7 +8,6 @@
 * @property Doctrine                 $doctrine
 * @property Geoip                    $geoip
 * @property Messagemodel             $messagemodel
-* @property Citylib                  $citylib
 */
 
 class Message extends MY_Controller
@@ -22,7 +21,10 @@ class Message extends MY_Controller
         $this->load->model("messagemodel");
         $this->init_admin();
         $this->load->library('pagination');
-        $this->load->library('app/mapper');
+        $this->load->library('app/paginationlib');
+        $this->load->library("app/mapper");
+        $this->load->library("app/formvalidator");
+        $this->load->language("message");
 
     }
    
@@ -36,15 +38,10 @@ class Message extends MY_Controller
     {   
         try
         {
-            $config['per_page']          = 20;
-            $config['uri_segment']       = 4;
-            $config['base_url']          = base_url()."/admin/message/index";
-            $config['total_rows']        = $this->messagemodel->get_count();
-            $this->pagination->initialize($config);
+            $pagingConfig   = $this->paginationlib->initPagination("/admin/message/index",$this->messagemodel->get_count());
             $this->data["pagination_helper"]   = $this->pagination;
+            $this->data["messages"] = $this->messagemodel->get_by_range($start_record,$pagingConfig['per_page']);
             
-            $messages              = $this->messagemodel->get_by_range($start_record,$config['per_page']);
-            $this->data["messages"] = $messages;
             return $this->view();             
         }
         catch (Exception $err)
@@ -55,7 +52,7 @@ class Message extends MY_Controller
     }
     
     /**
-     * Show details page of the city and saves the edited information as well
+     * Show details page of the message and saves the edited information as well
      * @param integer $id
      * @return view 
      */
@@ -64,24 +61,17 @@ class Message extends MY_Controller
         
         try
         {
-            $forms                  = $this->config->item("rules");
-            $this->data["message_form"]      = $forms["contact"];
-           
+            $forms = $this->config->item("rules");
+            $this->data["message_form"] = $forms["contact"];
+
             if($this->input->post("submit")){
-                
-                $this->load->library('form_validation');
-                $this->load->helper('form'); 
-                $fv = $this->form_validation;
-                $fv->set_rules($this->data["message_form"]);
-                
-                if($fv->run())
+     
+                if($this->formvalidator->isValid("contact"))
                 {
-                    $message = $this->messagemodel->get($id); 
-                    //print_r($message);exit;
-                    $message = $this->mapper->formToMessage($this->input,$this->data["message_form"],$message);
+                    $message = $this->mapper->formToMessage($this->input,$this->data["message_form"],$this->messagemodel->get($id));
                     if($this->messagemodel->save($message))
                     {
-                        $this->data["status"]->message = "City saved successfully";
+                        $this->data["status"]->message = $this->lang->line('edit_success');
                         $this->data["status"]->success = TRUE;
                     }
                     else
@@ -118,21 +108,21 @@ class Message extends MY_Controller
         
         try
         {
-            $forms                = $this->config->item("rules");
-            $this->data["message_form"]    = $forms["contact"];
+            $forms = $this->config->item("rules");
+            $this->data["message_form"] = $forms["contact"];
 
             if($this->input->post("submit")){
                 $this->load->library('form_validation');
                 $this->load->helper('form'); 
                 $fv = $this->form_validation;
-                $fv->set_rules($this->data["message_form"]);
-
+                $fv->set_rules($forms["contact"]);
+                
                 if($fv->run())
                 {
                     $message = $this->mapper->formToMessage($this->input,$this->data["message_form"]);
                     if($this->messagemodel->save($message))
                     {
-                        $this->data["status"]->message = "Message added successfully";
+                        $this->data["status"]->message = $this->lang->line('add_success');
                         $this->data["status"]->success = TRUE;
                     }
                     else 
@@ -160,7 +150,7 @@ class Message extends MY_Controller
     }
     
     /**
-     *Delete a record and redirect to city list page
+     *Delete a record and redirect to message list page
      * @return view 
      */
     public function delete()
@@ -182,5 +172,5 @@ class Message extends MY_Controller
     }
     
 }
-/* End of file city.php */
-/* Location: ./application/modules/controllers/admin/city.php */
+/* End of file message.php */
+/* Location: ./application/modules/controllers/admin/message.php */

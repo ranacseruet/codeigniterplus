@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller
 {
     //common prefix that will be used for point template/config files
     var $prefix = "PD_";
-     var $data;
+    var $data;
     
      /**
      * constructor
@@ -65,7 +65,7 @@ class MY_Controller extends CI_Controller
     
     /**
      * final view codes for showing template
-     * @param ArrayObject $data
+     * @param ArrayObject $this->data
      * @param bool $template_only
      */
     function view($template_only=FALSE)
@@ -73,7 +73,7 @@ class MY_Controller extends CI_Controller
         //assigns all data as smarty variables. Reduces smarty assignment in controllers
         if($this->data != NULL)
         {
-            foreach($data as $key => $value)
+            foreach($this->data as $key => $value)
             {
                 $this->mysmarty->assign($key, $value);
             }

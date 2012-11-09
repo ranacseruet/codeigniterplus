@@ -26,12 +26,10 @@ Which Library used:
 - Stylesheet
 	* Blue Print Css
 
-
-
 - Jquery Library
-        * Goggle map
-        * Steal production
-        * Jquery
+       * Goggle map
+       * Steal production
+       * Jquery
 
 How to Use
 ----------
@@ -39,6 +37,6 @@ How to Use
 - Paste all file from Codeigniterplus to your project directory.
 - Edit config/database.php file; Here change the database name,         user name and password as per your database server.
 - Crate a database with your given database name in config/database.php file.
-- Run http://your_domain_name/generate_schema for create database table.
+- Run http://your_domain_name/home/generate_schema for create database table.
 -Every time when you update your entity file in models/entity dirctory just Run the above url for create new schema.
 

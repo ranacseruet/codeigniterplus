@@ -22,7 +22,7 @@ class USers extends MY_Controller
         $this->load->model("usermodel");
         $this->init_admin();
         $this->load->library('pagination');
-
+        $this->load->library('app/paginationlib');
     }
    
     
@@ -35,14 +35,10 @@ class USers extends MY_Controller
     {   
         try
         {
-            $config['per_page']          = 20;
-            $config['uri_segment']       = 4;
-            $config['base_url']          = base_url()."admin/users/index";
-            $config['total_rows']        = $this->usermodel->get_count();
-            $this->pagination->initialize($config);
+            $pagingConfig   = $this->paginationlib->initPagination("/admin/users/index",$this->usermodel->get_count());
             $this->data["pagination_helper"]   = $this->pagination;
             
-            $this->data["users"]              = $this->usermodel->get_by_range($start_record,$config['per_page']);
+            $this->data["users"]              = $this->usermodel->get_by_range($start_record,$pagingConfig['per_page']);
 
             return $this->view();             
         }
@@ -63,7 +59,6 @@ class USers extends MY_Controller
         try 
         { 
             if($this->input->post("delete")){
-                //print_r($this->input->post("id"));exit;
                 $this->usermodel->delete($this->input->post("id"));
             }
 

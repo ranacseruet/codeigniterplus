@@ -44,10 +44,10 @@ class User extends MY_Controller
         try
         {
             //Info of currently logged in user is succefully retrieved
-            $data["user"] = $this->dx_auth->get_username();
+            $this->data["user"] = $this->dx_auth->get_username();
 
 
-            return $this->view($data);
+            return $this->view();
         }
         catch (Exception $err)
         {

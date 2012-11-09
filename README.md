@@ -22,8 +22,6 @@ Which Library used:
 	* HMVC Facilities
 	* Different Language File
 
-
-
 - Jquery Library
         * Goggle map
         * Steal production

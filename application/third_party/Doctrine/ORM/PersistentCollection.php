@@ -13,16 +13,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the LGPL. For more information, see
+ * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM;
 
-use Doctrine\ORM\Mapping\ClassMetadata,
-    Doctrine\Common\Collections\Collection,
-    Doctrine\Common\Collections\ArrayCollection,
-    Closure;
+use Doctrine\ORM\Mapping\ClassMetadata;
+
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Selectable;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\ExpressionBuilder;
+
+use Closure;
 
 /**
  * A PersistentCollection represents a collection of elements that have persistent state.
@@ -37,9 +42,10 @@ use Doctrine\ORM\Mapping\ClassMetadata,
  * @author    Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author    Roman Borschel <roman@code-factory.org>
  * @author    Giorgio Sironi <piccoloprincipeazzurro@gmail.com>
- * @todo Design for inheritance to allow custom implementations?
+ * @author    Stefano Rodriguez <stefano.rodriguez@fubles.com>
+ * @todo      Design for inheritance to allow custom implementations?
  */
-final class PersistentCollection implements Collection
+final class PersistentCollection implements Collection, Selectable
 {
     /**
      * A snapshot of the collection at the moment it was fetched from the database.
@@ -284,7 +290,7 @@ final class PersistentCollection implements Collection
     /**
      * INTERNAL: Gets the association mapping of the collection.
      *
-     * @return \Doctrine\ORM\Mapping\AssociationMapping
+     * @return array
      */
     public function getMapping()
     {
@@ -389,6 +395,7 @@ final class PersistentCollection implements Collection
 
         if ($this->association !== null &&
             $this->association['type'] & ClassMetadata::TO_MANY &&
+            $this->owner &&
             $this->association['orphanRemoval']) {
             $this->em->getUnitOfWork()->scheduleOrphanRemoval($removed);
         }
@@ -427,6 +434,7 @@ final class PersistentCollection implements Collection
 
         if ($this->association !== null &&
             $this->association['type'] & ClassMetadata::TO_MANY &&
+            $this->owner &&
             $this->association['orphanRemoval']) {
             $this->em->getUnitOfWork()->scheduleOrphanRemoval($element);
         }
@@ -631,7 +639,9 @@ final class PersistentCollection implements Collection
 
         $uow = $this->em->getUnitOfWork();
 
-        if ($this->association['type'] & ClassMetadata::TO_MANY && $this->association['orphanRemoval']) {
+        if ($this->association['type'] & ClassMetadata::TO_MANY &&
+            $this->association['orphanRemoval'] &&
+            $this->owner) {
             // we need to initialize here, as orphan removal acts like implicit cascadeRemove,
             // hence for event listeners we need the objects in memory.
             $this->initialize();
@@ -774,13 +784,55 @@ final class PersistentCollection implements Collection
      */
     public function __clone()
     {
-        $this->initialize();
-        $this->owner = null;
-
         if (is_object($this->coll)) {
             $this->coll = clone $this->coll;
         }
+
+        $this->initialize();
+
+        $this->owner    = null;
         $this->snapshot = array();
+
         $this->changed();
     }
+
+    /**
+     * Select all elements from a selectable that match the expression and
+     * return a new collection containing these elements.
+     *
+     * @param \Doctrine\Common\Collections\Criteria $criteria
+     * @return Collection
+     */
+    public function matching(Criteria $criteria)
+    {
+        if ($this->initialized) {
+            return $this->coll->matching($criteria);
+        }
+
+        if ($this->association['type'] !== ClassMetadata::ONE_TO_MANY) {
+            throw new \RuntimeException("Matching Criteria on PersistentCollection only works on OneToMany assocations at the moment.");
+        }
+
+        // If there are NEW objects we have to check if any of them matches the criteria
+        $newObjects = array();
+
+        if ($this->isDirty) {
+            $newObjects = $this->coll->matching($criteria)->toArray();
+        }
+
+        $targetClass = $this->em->getClassMetadata(get_class($this->owner));
+
+        $id              = $targetClass->getSingleIdReflectionProperty()->getValue($this->owner);
+        $builder         = Criteria::expr();
+        $ownerExpression = $builder->eq($this->backRefFieldName, $id);
+        $expression      = $criteria->getWhereExpression();
+        $expression      = $expression ? $builder->andX($expression, $ownerExpression) : $ownerExpression;
+
+        $criteria->where($expression);
+
+        $persister = $this->em->getUnitOfWork()->getEntityPersister($this->association['targetEntity']);
+
+        return new ArrayCollection(array_merge($persister->loadCriteria($criteria), $newObjects));
+    }
 }
+

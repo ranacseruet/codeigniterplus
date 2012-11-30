@@ -13,7 +13,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the LGPL. For more information, see
+ * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
@@ -21,7 +21,6 @@ namespace Doctrine\ORM\Proxy;
 
 use Doctrine\ORM\EntityManager,
     Doctrine\ORM\Mapping\ClassMetadata,
-    Doctrine\ORM\Mapping\AssociationMapping,
     Doctrine\Common\Util\ClassUtils;
 
 /**
@@ -93,10 +92,6 @@ class ProxyFactory
             require $fileName;
         }
 
-        if ( ! $this->_em->getMetadataFactory()->hasMetadataFor($fqn)) {
-            $this->_em->getMetadataFactory()->setMetadataFor($fqn, $this->_em->getClassMetadata($className));
-        }
-
         $entityPersister = $this->_em->getUnitOfWork()->getEntityPersister($className);
 
         return new $fqn($entityPersister, $identifier);
@@ -151,11 +146,11 @@ class ProxyFactory
     /**
      * Generates a proxy class file.
      *
-     * @param $class
-     * @param $proxyClassName
-     * @param $file The path of the file to write to.
+     * @param ClassMetadata $class Metadata for the original class
+     * @param string $fileName Filename (full path) for the generated class
+     * @param string $file The proxy class template data
      */
-    private function _generateProxyClass($class, $fileName, $file)
+    private function _generateProxyClass(ClassMetadata $class, $fileName, $file)
     {
         $methods = $this->_generateMethods($class);
         $sleepImpl = $this->_generateSleep($class);
@@ -184,7 +179,19 @@ class ProxyFactory
 
         $file = str_replace($placeholders, $replacements, $file);
 
-        file_put_contents($fileName, $file, LOCK_EX);
+        $parentDirectory = dirname($fileName);
+
+        if ( ! is_dir($parentDirectory)) {
+            if (false === @mkdir($parentDirectory, 0775, true)) {
+                throw ProxyException::proxyDirectoryNotWritable();
+            }
+        } else if ( ! is_writable($parentDirectory)) {
+            throw ProxyException::proxyDirectoryNotWritable();
+        }
+
+        $tmpFileName = $fileName . '.' . uniqid("", true);
+        file_put_contents($tmpFileName, $file);
+        rename($tmpFileName, $fileName);
     }
 
     /**
@@ -274,7 +281,7 @@ class ProxyFactory
      * @param ClassMetadata $class
      * @return bool
      */
-    private function isShortIdentifierGetter($method, $class)
+    private function isShortIdentifierGetter($method, ClassMetadata $class)
     {
         $identifier = lcfirst(substr($method->getName(), 3));
         $cheapCheck = (
@@ -392,7 +399,7 @@ class <proxyClassName> extends \<className> implements \Doctrine\ORM\Proxy\Proxy
             if ($original === null) {
                 throw new \Doctrine\ORM\EntityNotFoundException();
             }
-            foreach ($class->reflFields AS $field => $reflProperty) {
+            foreach ($class->reflFields as $field => $reflProperty) {
                 $reflProperty->setValue($this, $reflProperty->getValue($original));
             }
             unset($this->_entityPersister, $this->_identifier);

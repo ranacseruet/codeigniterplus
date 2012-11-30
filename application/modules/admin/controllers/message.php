@@ -10,7 +10,7 @@
 * @property Messagemodel             $messagemodel
 */
 
-class Message extends MY_Controller
+class Message extends Admin_Controller
 {
     /**
      * constructor
@@ -19,7 +19,6 @@ class Message extends MY_Controller
     {
         parent::__construct();        
         $this->load->model("messagemodel");
-        $this->init_admin();
         $this->load->library('pagination');
         $this->load->library('app/paginationlib');
         $this->load->library("app/mapper");

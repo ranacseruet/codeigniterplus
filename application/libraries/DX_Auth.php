@@ -928,20 +928,18 @@ class DX_Auth
 
             /* Setting default user role and create role if database empty */
             $roles = $this->ci->roles->get_all(); 
-            if(!empty($roles)){
-                foreach($roles as $role){
-                    if($role->getName() == "user"){
-                        $new_user["role_id"] = $role->getId();
-                    }
-                }
-            }
-
-            else{
+            if(empty($roles)){
                     $this->ci->roles->create_role("admin");
+                    $this->ci->roles->create_role("user");
             }
 
             if(empty($new_user["role_id"])){
-                $new_user["role_id"] = $this->ci->roles->create_role("user");
+                if($new_user["username"] == "admin"){
+                    $new_user["role_id"] = $this->ci->roles->get_role_by_name("admin")->getId();
+                }    
+                else{
+                    $new_user["role_id"] = $this->ci->roles->get_role_by_name("user")->getId();
+                }
             }
             // Do we need to send email to activate user
             if ($this->ci->config->item('DX_email_activation'))

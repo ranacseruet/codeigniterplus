@@ -13,31 +13,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * This software consists of voluntary contributions made by many individuals
- * and is licensed under the LGPL. For more information, see
+ * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
 
 namespace Doctrine\ORM\Mapping\Driver;
 
-use Doctrine\Common\Cache\ArrayCache,
-    Doctrine\Common\Annotations\AnnotationReader,
-    Doctrine\DBAL\Schema\AbstractSchemaManager,
+use Doctrine\DBAL\Schema\AbstractSchemaManager,
     Doctrine\DBAL\Schema\SchemaException,
+    Doctrine\Common\Persistence\Mapping\Driver\MappingDriver,
+    Doctrine\Common\Persistence\Mapping\ClassMetadata,
     Doctrine\ORM\Mapping\ClassMetadataInfo,
-    Doctrine\ORM\Mapping\MappingException,
-    Doctrine\Common\Util\Inflector;
+    Doctrine\Common\Util\Inflector,
+    Doctrine\ORM\Mapping\MappingException;
 
 /**
  * The DatabaseDriver reverse engineers the mapping metadata from a database.
  *
- * @license http://www.opensource.org/licenses/lgpl-license.php LGPL
+ *
  * @link    www.doctrine-project.org
  * @since   2.0
  * @author  Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author  Jonathan Wage <jonwage@gmail.com>
  * @author  Benjamin Eberlei <kontakt@beberlei.de>
  */
-class DatabaseDriver implements Driver
+class DatabaseDriver implements MappingDriver
 {
     /**
      * @var AbstractSchemaManager
@@ -74,10 +74,8 @@ class DatabaseDriver implements Driver
     private $namespace;
 
     /**
-     * Initializes a new AnnotationDriver that uses the given AnnotationReader for reading
-     * docblock annotations.
      *
-     * @param AnnotationReader $reader The AnnotationReader to use.
+     * @param AbstractSchemaManager $schemaManager
      */
     public function __construct(AbstractSchemaManager $schemaManager)
     {
@@ -94,12 +92,12 @@ class DatabaseDriver implements Driver
     public function setTables($entityTables, $manyToManyTables)
     {
         $this->tables = $this->manyToManyTables = $this->classToTableNames = array();
-        foreach ($entityTables AS $table) {
+        foreach ($entityTables as $table) {
             $className = $this->getClassNameForTable($table->getName());
             $this->classToTableNames[$className] = $table->getName();
             $this->tables[$table->getName()] = $table;
         }
-        foreach ($manyToManyTables AS $table) {
+        foreach ($manyToManyTables as $table) {
             $this->manyToManyTables[$table->getName()] = $table;
         }
     }
@@ -117,8 +115,8 @@ class DatabaseDriver implements Driver
         }
 
         $this->tables = $this->manyToManyTables = $this->classToTableNames = array();
-        foreach ($tables AS $tableName => $table) {
-            /* @var $table Table */
+        foreach ($tables as $tableName => $table) {
+            /* @var $table \Doctrine\DBAL\Schema\Table */
             if ($this->_sm->getDatabasePlatform()->supportsForeignKeyConstraints()) {
                 $foreignKeys = $table->getForeignKeys();
             } else {
@@ -126,7 +124,7 @@ class DatabaseDriver implements Driver
             }
 
             $allForeignKeyColumns = array();
-            foreach ($foreignKeys AS $foreignKey) {
+            foreach ($foreignKeys as $foreignKey) {
                 $allForeignKeyColumns = array_merge($allForeignKeyColumns, $foreignKey->getLocalColumns());
             }
 
@@ -154,9 +152,9 @@ class DatabaseDriver implements Driver
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function loadMetadataForClass($className, ClassMetadataInfo $metadata)
+    public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
         $this->reverseEngineerMappingFromDatabase();
 
@@ -184,7 +182,7 @@ class DatabaseDriver implements Driver
         }
 
         $allForeignKeyColumns = array();
-        foreach ($foreignKeys AS $foreignKey) {
+        foreach ($foreignKeys as $foreignKey) {
             $allForeignKeyColumns = array_merge($allForeignKeyColumns, $foreignKey->getLocalColumns());
         }
 
@@ -192,13 +190,13 @@ class DatabaseDriver implements Driver
         $fieldMappings = array();
         foreach ($columns as $column) {
             $fieldMapping = array();
-            
+
             if (in_array($column->getName(), $allForeignKeyColumns)) {
                 continue;
             } else if ($primaryKeyColumns && in_array($column->getName(), $primaryKeyColumns)) {
                 $fieldMapping['id'] = true;
             }
-            
+
             $fieldMapping['fieldName'] = $this->getFieldNameForColumn($tableName, $column->getName(), false);
             $fieldMapping['columnName'] = $column->getName();
             $fieldMapping['type'] = strtolower((string) $column->getType());
@@ -232,13 +230,13 @@ class DatabaseDriver implements Driver
             $metadata->mapField($fieldMapping);
         }
 
-        foreach ($this->manyToManyTables AS $manyTable) {
-            foreach ($manyTable->getForeignKeys() AS $foreignKey) {
+        foreach ($this->manyToManyTables as $manyTable) {
+            foreach ($manyTable->getForeignKeys() as $foreignKey) {
                 // foreign  key maps to the table of the current entity, many to many association probably exists
                 if (strtolower($tableName) == strtolower($foreignKey->getForeignTableName())) {
                     $myFk = $foreignKey;
                     $otherFk = null;
-                    foreach ($manyTable->getForeignKeys() AS $foreignKey) {
+                    foreach ($manyTable->getForeignKeys() as $foreignKey) {
                         if ($foreignKey != $myFk) {
                             $otherFk = $foreignKey;
                             break;
@@ -309,7 +307,7 @@ class DatabaseDriver implements Driver
                     'referencedColumnName' => $fkCols[$i],
                 );
             }
-            
+
             //Here we need to check if $cols are the same as $primaryKeyColums
             if (!array_diff($cols,$primaryKeyColumns)) {
                 $metadata->mapOneToOne($associationMapping);
@@ -320,7 +318,7 @@ class DatabaseDriver implements Driver
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function isTransient($className)
     {
@@ -328,11 +326,7 @@ class DatabaseDriver implements Driver
     }
 
     /**
-     * Return all the class names supported by this driver.
-     *
-     * IMPORTANT: This method must return an array of class not tables names.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getAllClassNames()
     {

@@ -66,13 +66,15 @@ interface OutputInterface
      * Gets the current verbosity of the output.
      *
      * @return integer The current level of verbosity
+     *
+     * @api
      */
     function getVerbosity();
 
     /**
      * Sets the decorated flag.
      *
-     * @param Boolean $decorated Whether to decorated the messages or not
+     * @param Boolean $decorated Whether to decorate the messages or not
      *
      * @api
      */

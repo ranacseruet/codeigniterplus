@@ -1,10 +1,4 @@
 <?php
-require_once(APPPATH."models/Entities/DxUsers.php");
-require_once(APPPATH."models/Entities/DxUserProfile.php");
-require_once(APPPATH."models/Entities/DxRoles.php");
-
-
-
 use \DxUsers;
 use \DxUserProfile;
 use \DxRoles;

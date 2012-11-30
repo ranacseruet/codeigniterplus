@@ -3,7 +3,6 @@ use Doctrine\Common\ClassLoader,
     Doctrine\ORM\Configuration,
     Doctrine\ORM\EntityManager,
     Doctrine\Common\Cache\ArrayCache,
-    Doctrine\DBAL\Logging\EchoSQLLogger,
     Doctrine\ORM\Mapping\Driver\DatabaseDriver,
     Doctrine\ORM\Tools\DisconnectedClassMetadataFactory,
     Doctrine\ORM\Tools\EntityGenerator;
@@ -39,8 +38,9 @@ class Doctrine {
 
     $doctrineClassLoader = new ClassLoader('Doctrine',  APPPATH.'third_party');
     $doctrineClassLoader->register();
-    $entitiesClassLoader = new ClassLoader('models', rtrim(APPPATH, "/" ));
+    $entitiesClassLoader = new ClassLoader('models', APPPATH."models/Entities");
     $entitiesClassLoader->register();
+    
     $proxiesClassLoader = new ClassLoader('proxies', APPPATH.'models/proxies');
     $proxiesClassLoader->register();
 
@@ -57,8 +57,8 @@ class Doctrine {
     $config->setProxyNamespace('Proxies');
 
     // Set up logger
-    //$logger = new EchoSQLLogger;
-    //$config->setSQLLogger($logger);
+    $logger = new Doctrine\DBAL\Logging\CIProfiler();
+    $config->setSQLLogger($logger);
 
     $config->setAutoGenerateProxyClasses( TRUE );   
     // Database connection information
@@ -72,7 +72,10 @@ class Doctrine {
 
     // Create EntityManager
     $this->em = EntityManager::create($connectionOptions, $config);
-    
+
+    foreach ($driverImpl->getAllClassNames() as $class){
+        require_once($entitiesClassLoader->getIncludePath()."/".$class.".php");
+    }
     //$this->generate_classes();
     
   }

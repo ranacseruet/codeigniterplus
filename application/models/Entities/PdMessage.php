@@ -5,12 +5,12 @@
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PdContact
+ * PdMessage
  *
- * @Table(name="pd_contact")
+ * @Table(name="pd_message")
  * @Entity
  */
-class PdContact
+class PdMessage
 {
     /**
      * @var integer $id
@@ -20,6 +20,16 @@ class PdContact
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @var DxUserProfile
+     *
+     * @ManyToOne(targetEntity="DxUserProfile")
+     * @JoinColumns({
+     *   @JoinColumn(name="user_profile_id", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+   private $userProfile;
 
     /**
      * @var string $name
@@ -78,7 +88,29 @@ class PdContact
         $this->name = $name;
         return $this;
     }
-
+    
+    /**
+     * Set userProfile
+     *
+     * @param DxUserProfile $userProfile
+     * @return PdMessage
+     */
+    public function setUserProfile(\DxUserProfile $userProfile = null)
+    {
+        $this->userProfile = $userProfile;
+        return $this;
+    }
+    
+    /**
+     * Get userProfile
+     *
+     * @return DxUserProfile 
+     */
+    public function getUserProfile()
+    {
+        return $this->userProfile;
+    }
+    
     /**
      * Get name
      *

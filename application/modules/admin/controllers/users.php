@@ -11,7 +11,7 @@
 
 */
 
-class USers extends MY_Controller
+class USers extends Admin_Controller
 {
     /**
      * constructor
@@ -20,7 +20,6 @@ class USers extends MY_Controller
     {
         parent::__construct();        
         $this->load->model("usermodel");
-        $this->init_admin();
         $this->load->library('pagination');
         $this->load->library('app/paginationlib');
     }

@@ -1,8 +1,5 @@
 <?php
-require_once(APPPATH."models/Entities/PdContact.php");
-
-use \PdContact;
-
+use \PdMessage;
 
 /**
  * City model
@@ -16,6 +13,6 @@ class Messagemodel extends My_DModel{
 
     function __construct() {
         parent::__construct();
-        $this->init("PdContact",$this->doctrine->em);
+        $this->init("PdMessage",$this->doctrine->em);
     }
 }

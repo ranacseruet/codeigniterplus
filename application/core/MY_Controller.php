@@ -20,9 +20,9 @@
 class MY_Controller extends CI_Controller
 {
     //common prefix that will be used for point template/config files
-    var $prefix = "PD_";
+    private $prefix = "PD_";
     var $data;
-    
+    var $page;
      /**
      * constructor
      */
@@ -30,8 +30,9 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();                
         $this->init();
-        $this->load->library("unit_test");
+        //$this->load->library("unit_test");
         //$this->output->enable_profiler();
+        $this->load->library('app/formvalidator');
     }
     
     /**
@@ -40,18 +41,11 @@ class MY_Controller extends CI_Controller
     function init()
     {
         //retrieve the current class name
-        $class_name = get_class($this);       
-        
-        $config_name = $this->prefix.$class_name;
-        //if(file_exists("./application/config/".$config_name.".php")){
-            //loading the configuration for this controller
-            $this->load->config("pd_forms");
-            $this->load->config("pd_seo");
-        //}
+        $class_name = strtolower(get_class($this));       
         
         //changing the prefix for this controller
         $this->prefix = $this->prefix.$class_name."_";
-        
+
         //changing smarty prefix as per this controller        
         $this->mysmarty->prefix = "modules/".$class_name."/";
         
@@ -59,13 +53,17 @@ class MY_Controller extends CI_Controller
         $this->mysmarty->assign("common_dir", "common/");
         $this->mysmarty->assign('base_url', base_url());
         $this->mysmarty->assign('is_logged_in', $this->dx_auth->is_logged_in());
+        $this->mysmarty->assign("is_admin", $this->dx_auth->is_admin());
         //set an empty message by default
         $this->mysmarty->assign('status', "");
+        
+        $this->page->noindex = false;
+        
     }
     
     /**
      * final view codes for showing template
-     * @param ArrayObject $this->data
+     * @param ArrayObject $data
      * @param bool $template_only
      */
     function view($template_only=FALSE)
@@ -82,21 +80,24 @@ class MY_Controller extends CI_Controller
         //retrieve method name for using on the next step
         $method = $this->getFunctionName();        
         $this->prefix = $this->prefix.$method."_";
+
+        //loading the seo_properties
+        $this->page->title = $this->config->item($this->prefix."title");
+        $this->page->title .= empty($this->page->title)?"":" | ";
+        $this->page->title .= get_domain();
+                
+        $this->page->key = $this->config->item($this->prefix."key");
+        $this->page->desc = $this->config->item($this->prefix."desc");
         
         //loading the seo_properties
-        $page->title = $this->config->item($this->prefix."title");
-        $page->key = $this->config->item($this->prefix."key");
-        $page->desc = $this->config->item($this->prefix."desc");
-        
-        //loading the seo_properties
-        $this->mysmarty->page = $page;
+        $this->mysmarty->page = $this->page;
         
         //To dispaly only template in case of asynchronous command
         if($template_only)
         {
             $this->mysmarty->display($this->mysmarty->prefix.$method.".tpl");
             exit; //to avoid showing profiler/debug info
-        }
+        }        
         $this->mysmarty->view($method);
     }
     
@@ -119,25 +120,11 @@ class MY_Controller extends CI_Controller
     {
         $this->mysmarty->prefix = $start_path.$this->mysmarty->prefix;
         $this->mysmarty->assign("common_dir", $start_path."common/");
-        $this->load->config("pd_user");
         if(!$this->dx_auth->is_logged_in())
         {
             redirect();
             exit;
         }
-    }
-    
-    /**
-     * Initialization for logged in admin.
-     * Redirect if logged in user is not an admin
-     */
-    function init_admin()
-    {
-        $this->init_user("admin/");
-        if(!$this->dx_auth->is_admin())
-        {
-            redirect();
-            exit;
-        }
+        $this->load->model("usermodel");
     }
 }

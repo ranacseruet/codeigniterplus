@@ -1,42 +1,33 @@
-Codeigniterplus(Additional Facilities)
+Codeigniterplus (The Ultimate Codeigniter Enhancements)
 =====================================
 
-The Ultimate Codeigniter Enhancements
-
-About
------
-- Author: 
-	* Md. Ali Ahsan Rana
-
-		Blog: (http://codesamplez.com/)
-
-	* Mahfuja Nilufar
+Codeigniterplus is an super light-weight codeigniter based extension with various other third party libraries. This will help developers
+to have a kickass start along their way to web application development.
 	
-Which Library used:
+Libraries used:
 ------------------
-- CodeIgniter Library
-	* DX_Auth 
-	* Hybridauth (Authentication login)
-	* Doctrine
-	* Mysmarty
-	* HMVC Facilities
-	* Different Language File
+- PHP libraries
+	* DX_Auth (https://github.com/EllisLab/CodeIgniter/wiki/DX-Auth)
+	* Hybridauth (social login library: http://hybridauth.sourceforge.net/)
+	* Doctrine (http://www.doctrine-project.org/)
+	* Smarty (http://www.smarty.net/)
+	* HMVC (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc) 
 
 
 - Stylesheet
 	* Blue Print Css
 
-- Jquery Library
-       * Goggle map
-       * Steal production
+- Javascript Libraries
        * Jquery
+       * Goggle map
+       * Steal from JavascriptMVC
 
-How to Use
+Basic installation
 ----------
-- Crate a new project with your choosable name. 
+- Crate a new project with your chosen name. 
 - Paste all file from Codeigniterplus to your project directory.
-- Edit config/database.php file; Here change the database name,         user name and password as per your database server.
+- Edit config/database.php file; Here change the database name, user name and password as per your database server.
 - Crate a database with your given database name in config/database.php file.
-- Run http://your_domain_name/home/generate_schema for create database table.
--Every time when you update your entity file in models/entity dirctory just Run the above url for create new schema.
+- Run http://{domain_path}/home/db_schema for create database table.
+- Every time when you update your entity file in models/entity dirctory just Run the above url for update existing schema.
 

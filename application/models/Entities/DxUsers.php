@@ -114,6 +114,13 @@ class DxUsers
      * })
      */
     private $role;
+    
+    /**
+     * @var DxUserProfile
+     * 
+     * @OneToOne(targetEntity="DxUserProfile", mappedBy="user") 
+     */
+    private $userProfile;
 
 
     /**
@@ -410,5 +417,15 @@ class DxUsers
     public function getRole()
     {
         return $this->role;
+    }
+    
+    /**
+     * Get userProfile
+     *
+     * @return DxUserProfile 
+     */
+    public function getUserProfile()
+    {
+        return $this->userProfile;
     }
 }

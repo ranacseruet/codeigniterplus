@@ -1,9 +1,4 @@
 <?php
-require_once(APPPATH."models/Entities/DxRoles.php");
-
-use \DxRoles;
-
-
 class Roles extends My_DModel 
 {
     function __construct()
@@ -21,6 +16,11 @@ class Roles extends My_DModel
     function get_role_by_id($role_id)
     {	
         return $this->get($role_id);
+    }
+    
+    function get_role_by_name($role_name)
+    {	
+        return $this->em->getRepository($this->entity)->findOneBy(array("name"=>$role_name));
     }
 
     function create_role($name, $parent_id = 0)

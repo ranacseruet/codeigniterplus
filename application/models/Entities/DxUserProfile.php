@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,13 +32,8 @@ class DxUserProfile
      * @Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
+
     
-    /**
-     * @var string $city
-     *
-     * @Column(name="city_name", type="string", length=255, nullable=false)
-     */
-    private $city;
 
     /**
      * @var string $website
@@ -94,13 +87,22 @@ class DxUserProfile
     /**
      * @var DxUsers
      *
-     * @ManyToOne(targetEntity="DxUsers")
+     * @OneToOne(targetEntity="DxUsers")
      * @JoinColumns({
-     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete = "cascade")
+     *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $user;
 
+
+    
+    /**
+     * @var PdMessage
+     * 
+     * @OneToMany(targetEntity="PdMessage", mappedBy="userProfile") 
+     */
+    private $messages;
+    
     /**
      * Get id
      *
@@ -158,23 +160,13 @@ class DxUserProfile
     /**
      * Set city
      *
-     * @param string $city
+     * @param GdCities $city
      * @return DxUserProfile
      */
-    public function setCity($city)
+    public function setCity(\GdCities $city = null)
     {
         $this->city = $city;
         return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return GdCities 
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 
     /**
@@ -351,5 +343,15 @@ class DxUserProfile
     public function getUser()
     {
         return $this->user;
+    }
+    
+     /**
+     * Get messages
+     *
+     * @return PdMessage 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

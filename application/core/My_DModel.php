@@ -44,10 +44,29 @@ class My_DModel extends CI_Model {
     {
         try
         {     
-            $city = $this->em->find($this->entity,$id);
-            return $city;
+            $object = $this->em->find($this->entity,$id);
+            return $object;
         }
         catch(Exception $err)
+        {
+            log_message("error", $err->getMessage(), false);
+            return NULL;
+        }
+    }
+    
+    /**
+     * Return all records for an entity
+     * @param type $start the start index number for the expertise list
+     * @param type $length Determines how many records to fetch
+     * @return type 
+     */
+    function get_all()
+    {
+        try
+        {
+            return $this->em->getRepository($this->entity)->findAll();
+        }
+         catch(Exception $err)
         {
             log_message("error", $err->getMessage(), false);
             return NULL;
@@ -69,6 +88,7 @@ class My_DModel extends CI_Model {
         catch(Exception $err)
         {
             log_message("error", $err->getMessage(), false);
+            print_r($err->getMessage());exit();
             return NULL;
         }
     }
@@ -130,7 +150,6 @@ class My_DModel extends CI_Model {
             foreach($ids as $id)
             {
                 $entity = $this->em->getPartialReference($this->entity, $id);
-                //print_r($entity);exit;
                 $this->em->remove($entity);
             }
             $this->em->flush();

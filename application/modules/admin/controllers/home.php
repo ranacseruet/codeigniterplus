@@ -10,7 +10,7 @@
 * @property Homemodel                $homemodel
 */
 
-class Home extends MY_Controller
+class Home extends Admin_Controller
 {
     /**
      * constructor
@@ -19,7 +19,6 @@ class Home extends MY_Controller
     {
         parent::__construct();        
         $this->load->model("usermodel");
-        $this->init_admin();
     }
    
     

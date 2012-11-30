@@ -1,3 +1,7 @@
+<?php
+redirect("error");
+exit;
+?>
 <html>
 <head>
 <title>404 Page Not Found</title>

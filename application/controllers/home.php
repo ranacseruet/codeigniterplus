@@ -82,22 +82,40 @@ class Home extends MY_Controller
         }
     }
     
-    function generate_schema(){
-        $this->em = $this->doctrine->em;
+    /**
+     * Secret function, to create/update database schema from doctrine entities
+     * @param type $mode
+     * @return type
+     */
+    function db_schema($mode="update")
+    {
+        try
+        {
+            $this->em = $this->doctrine->em;
+
+            $tool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
+
+            $cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory();
+            $cmf->setEntityManager($this->em);
+            $metadata = $cmf->getAllMetadata();
+
+            if($mode == "create"){
+                $queries = $tool->getCreateSchemaSql($metadata);
+            }
+            else{
+                $queries = $tool->getUpdateSchemaSql($metadata);
+            }
+            echo "Total queries: ".count($queries)."<br /><br />";
+            for($i=0; $i<count($queries);$i++){
+                $this->db->query($queries[$i]);
+                echo $queries[$i]."<br /><br />Execution Successfull: ".($i+1)."<br /><br />";
+            }
         
-        $tool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
-        
-        
-        $cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory();
-        $cmf->setEntityManager($this->em);
-        $metadata = $cmf->getAllMetadata();
-        
-        $queries = $tool->getCreateSchemaSql($metadata);
-        
-        echo "Total queries: ".count($queries)."<br /><br />";
-        for($i=0; $i<count($queries);$i++){
-            $this->db->query($queries[$i]);
-            echo $queries[$i]."<br /><br />Execution Successfull: ".($i+1)."<br /><br />";
+        }
+        catch(Exception $err)
+        {
+            log_message("error", $err->getMessage());
+            return show_error($err->getMessage());
         }
     }
 

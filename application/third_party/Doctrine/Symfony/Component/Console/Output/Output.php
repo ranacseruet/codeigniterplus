@@ -17,7 +17,7 @@ use Symfony\Component\Console\Formatter\OutputFormatter;
 /**
  * Base class for output classes.
  *
- * There is three level of verbosity:
+ * There are three levels of verbosity:
  *
  *  * normal: no option passed (normal output - information)
  *  * verbose: -v (more output - debug)
@@ -43,12 +43,8 @@ abstract class Output implements OutputInterface
      */
     public function __construct($verbosity = self::VERBOSITY_NORMAL, $decorated = null, OutputFormatterInterface $formatter = null)
     {
-        if (null === $formatter) {
-            $formatter = new OutputFormatter();
-        }
-
         $this->verbosity = null === $verbosity ? self::VERBOSITY_NORMAL : $verbosity;
-        $this->formatter = $formatter;
+        $this->formatter = null === $formatter ? new OutputFormatter() : $formatter;
         $this->formatter->setDecorated((Boolean) $decorated);
     }
 
@@ -79,7 +75,7 @@ abstract class Output implements OutputInterface
     /**
      * Sets the decorated flag.
      *
-     * @param Boolean $decorated Whether to decorated the messages or not
+     * @param Boolean $decorated Whether to decorate the messages or not
      *
      * @api
      */
@@ -180,5 +176,5 @@ abstract class Output implements OutputInterface
      * @param string  $message A message to write to the output
      * @param Boolean $newline Whether to add a newline or not
      */
-    abstract public function doWrite($message, $newline);
+    abstract protected function doWrite($message, $newline);
 }

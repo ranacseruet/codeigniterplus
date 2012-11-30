@@ -17,7 +17,7 @@
 * @property Uri                  $url   
 */
 
-class User extends MY_Controller
+class User extends User_Controller
 {
     
      
@@ -26,14 +26,9 @@ class User extends MY_Controller
      */
     public function __construct()
     {
-        parent::__construct();                       
-        $this->init_user();
-        
-        $this->load->model("usermodel");
-        
+        parent::__construct();                               
+        $this->load->model("usermodel");        
         $this->user_id = $this->dx_auth->get_user_id();
-        
-        
     }
     
     /**

@@ -3,5 +3,8 @@
    
     <div class="span-8 last footer_right"></div>
     <div class="clear"></div>
+    {if $is_logged_in AND $is_admin}
+        <a href="{$base_url}admin">Administration</a>
+    {/if}
 </div> 
         

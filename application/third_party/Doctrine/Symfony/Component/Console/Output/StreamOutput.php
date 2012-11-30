@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\Console\Output;
 
-use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 
 /**
  * StreamOutput writes the output to a given stream.
@@ -35,8 +35,8 @@ class StreamOutput extends Output
     /**
      * Constructor.
      *
-     * @param mixed           $stream    A stream resource
-     * @param integer         $verbosity The verbosity level (self::VERBOSITY_QUIET, self::VERBOSITY_NORMAL,
+     * @param mixed   $stream    A stream resource
+     * @param integer $verbosity The verbosity level (self::VERBOSITY_QUIET, self::VERBOSITY_NORMAL,
      *                                   self::VERBOSITY_VERBOSE)
      * @param Boolean         $decorated Whether to decorate messages or not (null for auto-guessing)
      * @param OutputFormatter $formatter Output formatter instance
@@ -45,7 +45,7 @@ class StreamOutput extends Output
      *
      * @api
      */
-    public function __construct($stream, $verbosity = self::VERBOSITY_NORMAL, $decorated = null, OutputFormatter $formatter = null)
+    public function __construct($stream, $verbosity = self::VERBOSITY_NORMAL, $decorated = null, OutputFormatterInterface $formatter = null)
     {
         if (!is_resource($stream) || 'stream' !== get_resource_type($stream)) {
             throw new \InvalidArgumentException('The StreamOutput class needs a stream as its first argument.');
@@ -78,7 +78,7 @@ class StreamOutput extends Output
      *
      * @throws \RuntimeException When unable to write output (should never happen)
      */
-    public function doWrite($message, $newline)
+    protected function doWrite($message, $newline)
     {
         if (false === @fwrite($this->stream, $message.($newline ? PHP_EOL : ''))) {
             // @codeCoverageIgnoreStart

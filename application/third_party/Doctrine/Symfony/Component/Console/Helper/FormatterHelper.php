@@ -21,9 +21,11 @@ class FormatterHelper extends Helper
     /**
      * Formats a message within a section.
      *
-     * @param string  $section The section name
-     * @param string  $message The message
-     * @param string  $style   The style to apply to the section
+     * @param string $section The section name
+     * @param string $message The message
+     * @param string $style   The style to apply to the section
+     *
+     * @return string The format section
      */
     public function formatSection($section, $message, $style = 'info')
     {
@@ -66,7 +68,7 @@ class FormatterHelper extends Helper
     }
 
     /**
-     * Returns the length of a string, uses mb_strlen if it is available.
+     * Returns the length of a string, using mb_strlen if it is available.
      *
      * @param string $string The string to check its length
      *
@@ -74,11 +76,19 @@ class FormatterHelper extends Helper
      */
     private function strlen($string)
     {
-        return function_exists('mb_strlen') ? mb_strlen($string, mb_detect_encoding($string)) : strlen($string);
+        if (!function_exists('mb_strlen')) {
+            return strlen($string);
+        }
+
+        if (false === $encoding = mb_detect_encoding($string)) {
+            return strlen($string);
+        }
+
+        return mb_strlen($string, $encoding);
     }
 
     /**
-     * Returns the helper's canonical name
+     * Returns the helper's canonical name.
      *
      * @return string The canonical name of the helper
      */

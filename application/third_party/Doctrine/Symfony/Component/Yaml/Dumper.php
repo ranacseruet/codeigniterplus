@@ -21,9 +21,9 @@ class Dumper
     /**
      * Dumps a PHP value to YAML.
      *
-     * @param  mixed   $input  The PHP value
-     * @param  integer $inline The level where you switch to inline YAML
-     * @param  integer $indent The level of indentation (used internally)
+     * @param mixed   $input  The PHP value
+     * @param integer $inline The level where you switch to inline YAML
+     * @param integer $indent The level of indentation (used internally)
      *
      * @return string  The YAML representation of the PHP value
      */
@@ -44,7 +44,7 @@ class Dumper
                     $prefix,
                     $isAHash ? Inline::dump($key).':' : '-',
                     $willBeInlined ? ' ' : "\n",
-                    $this->dump($value, $inline - 1, $willBeInlined ? 0 : $indent + 2)
+                    $this->dump($value, $inline - 1, $willBeInlined ? 0 : $indent + 4)
                 ).($willBeInlined ? "\n" : '');
             }
         }

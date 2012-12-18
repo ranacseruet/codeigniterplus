@@ -15,12 +15,25 @@ Libraries used:
 
 
 - Stylesheet
-	* Blue Print Css
+	* Blue Print CSS (http://www.blueprintcss.org/)
 
 - Javascript Libraries
-       * Jquery
-       * Goggle map
-       * Steal from JavascriptMVC
+       * Jquery (http://jquery.com/)
+       * Google map API (https://developers.google.com/maps/)
+       * Steal.js from JavascriptMVC (http://javascriptmvc.com/)
+
+Features
+----------
+- A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)
+- Organized directory structure for view files/stylesheets and javascript files.
+- Load javascripts libraries in asynchronous request, helping your application get the maximum performance.
+- Load stylesheet files/javascript files automatically if exist for a specific page. No external include/import required.
+- detect domain name automatically and add to the page title. Of course option also available for add page title/meta key and 
+meta descriptions as well.
+- custom on load function for your page, where you can initialize page specific tasks.
+- Use ORM(doctrine) for database layer.
+- User template engine(smarty) for view layer.
+
 
 Installation
 ----------

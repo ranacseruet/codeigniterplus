@@ -45,6 +45,10 @@ Installation
 - Change 'RewriteBase' on '.htaccess' file as per your your chosen name. If using root level domain, just remove it and keep as 'RewriteBase /'. 
 - Crate a database with your given database name in config/database.php file.
 - Now edit config/database.php file; Here change the database server, database name, user name and password as per your database server.
+- Make sure the following directories exists(create if not) and do have write permission by the application(easy to have them with '777' mode):
+    * {root}/application/cache
+    * {root}/application/logs
+    * {root}/application/models/proxies
 - Run http://{domain_path}/home/db_schema for create database tables from the doctrine entities, automatically.
   (Note :Every time when you update your entity file in models/entity directory just Run the above url for update existing schema.)
 - run the application, register with username 'admin'. This will cause to create default two roles 'admin' and user automatically and will 

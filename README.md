@@ -21,6 +21,7 @@ Libraries used:
        * Jquery (http://jquery.com/)
        * Google map API (https://developers.google.com/maps/)
        * Steal.js from JavascriptMVC (http://javascriptmvc.com/)
+       * jQuery Validate Plugin(http://bassistance.de/jquery-plugins/jquery-plugin-validation/)
 
 Features
 ----------
@@ -33,6 +34,8 @@ meta descriptions as well.
 - custom on load function for your page, where you can initialize page specific tasks.
 - Use ORM(doctrine) for database layer.
 - User template engine(smarty) for view layer.
+- Automatic client validation binding for forms all over the application(using jquery validate plugin). Also, custom enhanced style 
+  applied to validation error message placeholder.
 
 
 Installation

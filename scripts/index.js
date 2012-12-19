@@ -20,6 +20,10 @@ function loadGoogleMapPlugin(){
 }
 
 function jqueryPluginsLoaded(){
+    
+    $("form").each(function(){
+        $(this).validate(validateOptions);
+    });
     if(window.jInit){
         jInit();
     }
@@ -30,3 +34,19 @@ function googleMapPluginsLoaded(){
         gInit();
     }
 }
+
+/****** Custom validation error ********/
+function myErrorPlacement(error, element) {
+            offset = element.position();
+            error.insertBefore(element);
+            error.addClass('message');  // add a class to the wrapper
+            error.css('position', 'absolute');
+            error.css('left',offset.left + element.outerWidth());
+            error.css('top', offset.top);
+        }
+var validateOptions = {
+        errorElement: "span",
+        wrapper: "span",
+        errorPlacement:myErrorPlacement
+    };        
+/******* XXX ********/    

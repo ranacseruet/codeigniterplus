@@ -37,6 +37,10 @@ meta descriptions as well.
 - Automatic client validation binding for forms all over the application(using jquery validate plugin). Also, custom enhanced style 
   applied to validation error message placeholder.
 
+Technical Requirement
+---------------------
+- PHP version 5.4.x
+- Mysql version 5.x+ Database Engine(Should work with other db as well which doctrine support. But I haven't tested yet)
 
 Installation
 ----------

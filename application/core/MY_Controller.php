@@ -57,6 +57,7 @@ class MY_Controller extends CI_Controller
         //set an empty message by default
         $this->mysmarty->assign('status', "");
         
+        $this->page = (object)NULL;
         $this->page->noindex = false;
         
     }

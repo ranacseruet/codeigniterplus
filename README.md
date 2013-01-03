@@ -3,6 +3,8 @@ Codeigniterplus (The Ultimate Codeigniter Enhancements)
 
 Codeigniterplus is an super light-weight codeigniter based extension with various other third party libraries. This will help developers
 to have a kick-ass start along their way to web application development.
+
+(And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
 	
 Libraries used:
 ------------------

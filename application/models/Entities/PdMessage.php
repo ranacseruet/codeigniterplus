@@ -20,16 +20,6 @@ class PdMessage
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
-    /**
-     * @var DxUserProfile
-     *
-     * @ManyToOne(targetEntity="DxUserProfile")
-     * @JoinColumns({
-     *   @JoinColumn(name="user_profile_id", referencedColumnName="id", onDelete="CASCADE")
-     * })
-     */
-   private $userProfile;
 
     /**
      * @var string $name

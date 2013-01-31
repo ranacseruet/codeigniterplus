@@ -53,7 +53,7 @@ class Home extends MY_Controller
         {
             $forms = $this->config->item("rules");
             $this->data["contact_form"] = $forms["contact"];
-
+            
             if($this->input->post('submit')){
                 
                 $this->load->library("app/formvalidator");    

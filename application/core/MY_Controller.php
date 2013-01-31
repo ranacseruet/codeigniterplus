@@ -59,6 +59,8 @@ class MY_Controller extends CI_Controller
         
         $this->page = (object)NULL;
         $this->page->noindex = false;
+        
+        $this->data['status'] = (object)NULL;
     }
     
     /**

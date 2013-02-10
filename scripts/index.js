@@ -12,6 +12,7 @@ function loadJqueryPlugins(){
     steal(script_base_url+"libraries/javascriptmvc/jquerymx-3.2.custom.min_1.js",
           script_base_url+"libraries/jquery/jquery-ui-1.8.11.custom.min.js",
           script_base_url+"libraries/jquery/plugins/jquery.form.js",
+          script_base_url+"libraries/bootstrap.min.js",
           script_base_url+"libraries/jquery/plugins/jquery.validate.js",jqueryPluginsLoaded);
 }
 

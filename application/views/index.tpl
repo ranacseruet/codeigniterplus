@@ -8,22 +8,23 @@
     {include $common_dir|cat:"inc_styles.tpl"}
   </head>
   <body>
-      <div class="container" id="container">
-      	<div class="span-24 last header">          
-          {include $common_dir|cat:"header.tpl"}
-        </div> 
-        <div class="span-24 last content clear">
-            <div class="span-24 last status">
-                {include $common_dir|cat:"status.tpl"}
-            </div>
-            <div class="span-24 last">
-                {include $content|cat:".tpl"}
-            </div>
+    <div class="navbar navbar-fixed-top">          
+      {include $common_dir|cat:"header.tpl"}
+    </div> 
+    <div class="container content">
+        <div class="span12 status">
+            {include $common_dir|cat:"status.tpl"}
         </div>
-        <div class="span-24 last footer clear">   
+        <div class="span12">
+            {include $content|cat:".tpl"}
+        </div>
+    </div>  
+    <div class="container">    
+        <hr>
+        <footer>   
           {include $common_dir|cat:"footer.tpl"}
-        </div>  
-      </div>
-      {include $common_dir|cat:"inc_scripts.tpl"}  
+        </footer>    
+    </div>    
+    {include $common_dir|cat:"inc_scripts.tpl"}  
   </body>
 </html>

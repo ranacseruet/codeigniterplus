@@ -15,14 +15,8 @@
     margin: 0px;	
 }
 
-#container{
-	position:relative;
-	left:0px;
-	top:0px;
-	margin:0px auto;	
-} 
-
 .content{
+    margin-top: 30px;
     padding-top: 5px;
     padding-bottom: 5px; 
 }

@@ -1,6 +1,6 @@
 
 <div id="main_content">
-    <div class="span-24 last  prepend-top append-bottom">
+    <div class="span12 prepend-top append-bottom">
         
         <p>The page you are looking at is being generated dynamically by CodeIgniterPlus.</p>
 

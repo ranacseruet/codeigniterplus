@@ -4,13 +4,8 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-
-#main_menu li{
-    list-style-type: none;
-    display: inline;
-    float: right;
-    margin-left: 5px;
-    font-size: 15px;
+.header{
+    background: #999;
 }
 
 /*in case default validate is used without custom option*/

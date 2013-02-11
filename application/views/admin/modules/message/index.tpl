@@ -1,5 +1,5 @@
 <form action="{$base_url}admin/message/delete" method="POST">
-    <table cellspacing="0" cellpadding="4" border="0">
+    <table cellspacing="0" cellpadding="4" border="0" class="table">
         <thead>
             <tr>
                 <th> <input type="checkbox" value=""/> </th>

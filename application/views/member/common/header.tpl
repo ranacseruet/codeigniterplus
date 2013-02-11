@@ -1,13 +1,12 @@
-<div  id="header">
-    <div class="span-24 last logo">
-        <h1>User Panel</h1>
+<div class="navbar-inner">
+    <div class="container">     
+        <a class="brand" href="{$base_url}"><img src="#" width="111" height="30" alt="CodeigniterPlus" /></a>
+        <div class="nav-collapse">
+            <ul class="nav">
+                <li><a href="{$base_url}">Home</a></li>
+                <li><a href="{$base_url}myaccount/logout">Logout</a></li>
+                <li><a href="{$base_url}myaccount">Dashboard</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="span-24 last" id="main_menu">
-        <ul>
-            <li><a href="{$base_url}">Home</a></li>
-            <li><a href="{$base_url}myaccount">Dashboard</a></li>            
-            <li><a href="{$base_url}myaccount/logout">Log Out</a></li>
-        </ul>
-    </div>
-    <div class="clear"></div>    
 </div>

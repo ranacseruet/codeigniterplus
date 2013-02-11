@@ -4,13 +4,3 @@
  */
 
 
-$(document).ready(function(){	
-            // validate signup form 1 on keyup and submit
-            
-            $("#contact").validate({
-                
-            });
-           
-});
-
-

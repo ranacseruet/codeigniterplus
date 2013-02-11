@@ -2,7 +2,7 @@
 <div id="content">
 </br>
     <div class="span-24 last" id="error">
-        <form name="contact" method="post" action="{$base_url}home/contact" id="contact">            
+        <form name="contact" method="post" action="{$base_url}home/contact" id="contact" class="well">            
              <div>
                  <label class="control-label" for="name">{$contact_form.name.label} :</label><br />
                  <input type="text" name="{$contact_form.name.field}" id="name" class="required">

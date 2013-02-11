@@ -1,5 +1,5 @@
 {if $status AND isset($status->success) AND isset($status->message)}
-    <div id="status" class="status {if $status->success}success{else}error{/if}">
+    <div id="status" class="status alert {if $status->success}alert-success{else}alert-error{/if}">
         {$status->message}
     </div>
 {else}

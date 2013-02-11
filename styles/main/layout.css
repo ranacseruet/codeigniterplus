@@ -15,11 +15,13 @@
     margin: 0px;	
 }
 
-.content{
-    margin-top: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px; 
-}
+body {  
+    padding-top: 60px;  
+    padding-bottom: 40px;  
+}  
+.nav li {  
+    padding-top: 5px;  
+}  
 
 .footer{
     padding-top: 5px;

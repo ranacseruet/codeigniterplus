@@ -1,15 +1,12 @@
-
 <fieldset>
-    <legend accesskey="D" tabindex="1">Forgotten Password</legend>
-    <form action="http://localhost/~rana/codexpertz/forgot_password" method="post" accept-charset="utf-8">
-        <dl>
-            <dt>
-                <label for="login">Enter your Username or Email Address</label>
-            </dt>
-            <dd>
-		<input type="text" name="login" value="" id="login" maxlength="80" size="30"  /> 
-		<input type="submit" name="reset" value="Reset Now"  />
-            </dd>
-        </dl>
+    <legend>Forgotten Password</legend>
+    <form action="{$base_url}forgot_password" method="post" accept-charset="utf-8"  class="well">
+        <div>
+            <label for="login" class="control-label">Enter your Username or Email Address</label>
+            <input type="text" name="login" value="" id="login" maxlength="80" size="30"  /> 		
+        </div>
+        <div>
+            <input type="submit" name="reset" value="Reset Now" class="btn btn-success"  />
+        </div>
     </form>
 </fieldset>

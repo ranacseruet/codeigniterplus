@@ -25,6 +25,6 @@
 <div class="clear">
 {$pagination_helper->create_links()}
 &nbsp;
-<input type="submit" name="delete" value="Delete selected" />
+<input type="submit" name="delete" value="Delete selected"  class="btn btn-danger"  />
 </div>
 </form> 

@@ -216,24 +216,26 @@ class Auth extends MY_Controller
 				{
 					$this->dx_auth->captcha();										
 				}
-
+                                 
 				// Load registration page
-				//$this->load->view($this->dx_auth->register_view);
-                                $this->mysmarty->assign('confirm_password_error',form_error('confirm_password'));
-				$this->mysmarty->assign('email_error',form_error('email'));
-				$this->mysmarty->assign('show_captcha',FALSE);
-                                
+                                $this->data['status']->message = validation_errors();
+                                if($this->data['status']->message)
+                                {
+                                    $this->data['status']->success = FALSE;    
+                                }                                
                                 return $this->view();
 			}
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
 		{
-			$this->data['auth_message'] = 'Registration has been disabled.';
+			$this->data['status']->success = FALSE;
+                        $this->data['status']->message = 'Registration has been disabled.';
 			$this->load->view($this->dx_auth->register_disabled_view, $data);
 		}
 		else
 		{
-			$this->data['auth_message'] = 'You have to logout first, before registering.';
+                        $this->data['status']->success = FALSE;
+			$this->data['status']->message = 'You have to logout first, before registering.';
 			$this->load->view($this->dx_auth->logged_in_view, $data);
 		}
 	}

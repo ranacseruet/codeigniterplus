@@ -33,7 +33,7 @@
 <div class="clear">
 {$pagination_helper->create_links()}
 &nbsp;
-<input type="submit" name="delete" value="Delete selected" />
-<a href="{$base_url}admin/message/add">Ad New</a>
+<input type="submit" name="delete" value="Delete selected" class="btn btn-danger" />
+<a href="{$base_url}admin/message/add" class="btn btn-success">Ad New</a>
 </div>
 </form> 

@@ -5,6 +5,11 @@ Codeigniterplus is an super light-weight codeigniter based extension with variou
 to have a kick-ass start along their way to web application development.
 
 (And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
+
+Release Note For v1.1.0
+----------------------
+- Added 'Twitter Bootstrap' framework. (Special Thanks to Bogdan Comarniceanu, https://www.facebook.com/bcomarniceanu)
+- Fix few small issues/validation errors.
 	
 Libraries used:
 ------------------
@@ -16,15 +21,15 @@ Libraries used:
 	* HMVC (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc) 
 
 
-- Stylesheet
-	* Blue Print CSS (http://www.blueprintcss.org/)
+- Styles
+	* Twitter Bootstrap(http://twitter.github.com/bootstrap/) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
 
 - Javascript Libraries
        * Jquery (http://jquery.com/)
        * Google map API (https://developers.google.com/maps/)
        * Steal.js from JavascriptMVC (http://javascriptmvc.com/)
        * jQuery Validate Plugin(http://bassistance.de/jquery-plugins/jquery-plugin-validation/)
-
+       * Twitter Bootstrap(http://twitter.github.com/bootstrap/)
 Features
 ----------
 - A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)
@@ -68,4 +73,12 @@ You will get default functionality and diretory/file structure built in for thre
         * Front end, or publicly viewable pages.
         * User end, when registered members can login and have their accessible functionality.
         * Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
+
+Your Contribution
+-------------------
+
+I will love to get your contribution on this project. If you are interested, please feel free to add issues/bugs as you found from the 
+project(https://github.com/ranacseruet/codeigniterplus/issues?state=open). Also, if you have a new idea which can improve its usability
+or functionality, please add them there too. If you are interested to work and contribute the code, add yourself as assignee
+(or let me know if you need my help), fork the repo, make changes, commit and make an pull request.
 

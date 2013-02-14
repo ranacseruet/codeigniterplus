@@ -36,7 +36,12 @@ class User_Autologin extends My_DModel
         );
 
         $autologin_user= $this->em->getRepository($this->entity)->findOneBy($data);
-        return $autologin_user->getUser();
+        if($autologin_user){
+            return $autologin_user->getUser();
+        }
+        else{
+            return NULL;
+        }
     }
 
     function delete_key($key, $user_id)

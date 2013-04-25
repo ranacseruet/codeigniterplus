@@ -119,11 +119,18 @@ class My_DModel extends CI_Model {
      * @param type $entity Docrine Entity object
      * @return boolean 
      */
-    function save($entity)
+    function save($entities)
     {
         try
         {
-            $this->em->persist($entity);
+            if(is_array($entities)){
+                foreach($entities as $entity){
+                    $this->em->persist($entity);
+                }
+            }
+            else{
+                $this->em->persist($entities);
+            }
             $this->em->flush();
             return TRUE;
         }

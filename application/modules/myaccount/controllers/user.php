@@ -39,7 +39,7 @@ class User extends User_Controller
         try
         {
             //Info of currently logged in user is succefully retrieved
-            $this->data["user"] = $this->dx_auth->get_username();
+            $this->meta["user"] = $this->data["user"] = $this->dx_auth->get_username();
 
 
             return $this->view();

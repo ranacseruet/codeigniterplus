@@ -20,9 +20,11 @@
 class MY_Controller extends CI_Controller
 {
     //common prefix that will be used for point template/config files
-    private $prefix = "PD_";
+    var $prefix = "CP_";
     var $data;
     var $page;
+    var $meta;
+    
      /**
      * constructor
      */
@@ -30,9 +32,11 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();                
         $this->init();
+        $this->data["status"] = (object)NULL;
         //$this->load->library("unit_test");
         //$this->output->enable_profiler();
         $this->load->library('app/formvalidator');
+        $this->load->library("session");
     }
     
     /**
@@ -45,7 +49,7 @@ class MY_Controller extends CI_Controller
         
         //changing the prefix for this controller
         $this->prefix = $this->prefix.$class_name."_";
-
+        
         //changing smarty prefix as per this controller        
         $this->mysmarty->prefix = "modules/".$class_name."/";
         
@@ -60,7 +64,6 @@ class MY_Controller extends CI_Controller
         $this->page = (object)NULL;
         $this->page->noindex = false;
         
-        $this->data['status'] = (object)NULL;
     }
     
     /**
@@ -82,14 +85,21 @@ class MY_Controller extends CI_Controller
         //retrieve method name for using on the next step
         $method = $this->getFunctionName();        
         $this->prefix = $this->prefix.$method."_";
-
         //loading the seo_properties
-        $this->page->title = $this->config->item($this->prefix."title");
+        $this->page->title .= $this->config->item($this->prefix."title");
         $this->page->title .= empty($this->page->title)?"":" | ";
         $this->page->title .= get_domain();
                 
         $this->page->key = $this->config->item($this->prefix."key");
         $this->page->desc = $this->config->item($this->prefix."desc");
+        
+        if($this->meta && is_array($this->meta)){
+            foreach ($this->meta as $key => $value){
+                $this->page->title  =   str_replace("{".$key."}", $value, $this->page->title);
+                $this->page->desc   =   str_replace("{".$key."}", $value, $this->page->desc);
+            }
+        }
+        
         
         //loading the seo_properties
         $this->mysmarty->page = $this->page;
@@ -99,7 +109,7 @@ class MY_Controller extends CI_Controller
         {
             $this->mysmarty->display($this->mysmarty->prefix.$method.".tpl");
             exit; //to avoid showing profiler/debug info
-        }        
+        }
         $this->mysmarty->view($method);
     }
     

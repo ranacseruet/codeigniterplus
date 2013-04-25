@@ -23,6 +23,7 @@ class Message extends Admin_Controller
         $this->load->library('app/paginationlib');
         $this->load->library("app/mapper");
         $this->load->library("app/formvalidator");
+        $this->load->model("messagemodel");
         $this->load->language("message");
 
     }
@@ -138,7 +139,7 @@ class Message extends Admin_Controller
             }
 
             $this->data["action_url"] = base_url()."admin/message/add";
-            $this->data["message"]       = new PdContact();
+            $this->data["message"]    = new PdMessage();
             return $this->view();
         }
         catch (Exception $err)

@@ -80,7 +80,7 @@ $autoload['helper'] = array('url');
 |
 */
 
-$autoload['config'] = array("pd_forms");
+$autoload['config'] = array("pd_forms","pd_seo");
 
 
 /*

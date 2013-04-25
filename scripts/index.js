@@ -4,13 +4,12 @@
  */
 
 window.onload = function(){
-    steal(script_base_url+"libraries/jquery/jquery-1.6.4.min.js",loadJqueryPlugins);
+    steal(script_base_url+"libraries/jquery/jquery-2.0.0.min.js",loadJqueryPlugins);
     google.load("maps","3.8", {"other_params":"sensor=true",callback:loadGoogleMapPlugin});
 }
 
 function loadJqueryPlugins(){
-    steal(script_base_url+"libraries/javascriptmvc/jquerymx-3.2.custom.min_1.js",
-          script_base_url+"libraries/jquery/jquery-ui-1.8.11.custom.min.js",
+    steal(script_base_url+"libraries/jquery/jquery-ui-1.10.2.custom.min.js",
           script_base_url+"libraries/jquery/plugins/jquery.form.js",
           script_base_url+"libraries/bootstrap.min.js",
           script_base_url+"libraries/jquery/plugins/jquery.validate.js",jqueryPluginsLoaded);

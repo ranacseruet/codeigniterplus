@@ -256,7 +256,7 @@ class SQLServerPlatform extends AbstractPlatform
     {
         $constraint = parent::getCreateIndexSQL($index, $table);
 
-        if ($index->isUnique()) {
+        if ($index->isUnique() && !$index->isPrimary()) {
             $constraint = $this->_appendUniqueConstraintDefinition($constraint, $index);
         }
 
@@ -631,13 +631,7 @@ class SQLServerPlatform extends AbstractPlatform
      */
     protected function _getCommonIntegerTypeDeclarationSQL(array $columnDef)
     {
-        $autoinc = '';
-        if (!empty($columnDef['autoincrement'])) {
-            $autoinc = ' IDENTITY';
-        }
-        $unsigned = (isset($columnDef['unsigned']) && $columnDef['unsigned']) ? ' UNSIGNED' : '';
-
-        return $unsigned . $autoinc;
+        return (!empty($columnDef['autoincrement'])) ? ' IDENTITY' : '';
     }
 
     /**
@@ -693,12 +687,12 @@ class SQLServerPlatform extends AbstractPlatform
 
                 // Remove ORDER BY clause from $query
                 $query = preg_replace('/\s+ORDER BY(.*)/', '', $query);
-                $query = preg_replace('/^SELECT\s/', '', $query);
+                $query = preg_replace('/\sFROM/i', ", ROW_NUMBER() OVER ($over) AS doctrine_rownum FROM", $query);
 
                 $start = $offset + 1;
                 $end = $offset + $limit;
 
-                $query = "SELECT * FROM (SELECT ROW_NUMBER() OVER ($over) AS doctrine_rownum, $query) AS doctrine_tbl WHERE doctrine_rownum BETWEEN $start AND $end";
+                $query = "SELECT * FROM ($query) AS doctrine_tbl WHERE doctrine_rownum BETWEEN $start AND $end";
             }
         }
 
@@ -901,5 +895,33 @@ class SQLServerPlatform extends AbstractPlatform
     public function getBlobTypeDeclarationSQL(array $field)
     {
         return 'VARBINARY(MAX)';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDefaultValueDeclarationSQL($field)
+    {
+        if ( ! isset($field['default'])) {
+            return empty($field['notnull']) ? ' NULL' : '';
+        }
+
+        if ( ! isset($field['type'])) {
+            return " DEFAULT '" . $field['default'] . "'";
+        }
+
+        if (in_array((string) $field['type'], array('Integer', 'BigInteger', 'SmallInteger'))) {
+            return " DEFAULT " . $field['default'];
+        }
+
+        if ((string) $field['type'] == 'DateTime' && $field['default'] == $this->getCurrentTimestampSQL()) {
+            return " DEFAULT " . $this->getCurrentTimestampSQL();
+        }
+
+        if ((string) $field['type'] == 'Boolean') {
+            return " DEFAULT '" . $this->convertBooleans($field['default']) . "'";
+        }
+
+        return " DEFAULT '" . $field['default'] . "'";
     }
 }

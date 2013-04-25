@@ -5,7 +5,7 @@
 
 
 <!-- Jquery UI CSS Files Starts -->
-<link type="text/css" rel="stylesheet" href="{$base_url}styles/jquery-ui/ui-lightness/jquery-ui-1.8.11.custom.css" />
+<link type="text/css" rel="stylesheet" href="{$base_url}styles/jquery-ui/ui-lightness/jquery-ui-1.10.2.custom.min.css" />
 <!-- Jquery UI CSS Files Ends -->
 
 <!-- Main site layout and styles Starts -->
@@ -15,7 +15,6 @@
 
 {assign var="style_file" value="styles/"|cat:$content|cat:".css"}
 
-{if file_exists($style_file)}
-    
+{if file_exists($style_file)}   
     <link type="text/css" rel="stylesheet" href="{$base_url}{$style_file}" />
 {/if}

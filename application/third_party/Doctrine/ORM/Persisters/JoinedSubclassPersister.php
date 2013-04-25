@@ -227,8 +227,10 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
 
             // Make sure the table with the version column is updated even if no columns on that
             // table were affected.
-            if ($isVersioned && ! isset($updateData[$versionedTable])) {
-                $this->_updateTable($entity, $this->quoteStrategy->getTableName($versionedClass, $this->_platform), array(), true);
+            if ($isVersioned) {
+                if ( ! isset($updateData[$versionedTable])) {
+                    $this->_updateTable($entity, $this->quoteStrategy->getTableName($versionedClass, $this->_platform), array(), true);
+                }
 
                 $id = $this->_em->getUnitOfWork()->getEntityIdentifier($entity);
                 $this->assignDefaultVersionValue($entity, $id);
@@ -468,7 +470,8 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
                 }
             } else if ($this->_class->name != $this->_class->rootEntityName ||
                     ! $this->_class->isIdGeneratorIdentity() || $this->_class->identifier[0] != $name) {
-                $columns[] = $this->quoteStrategy->getColumnName($name, $this->_class, $this->_platform);
+                $columns[]                  = $this->quoteStrategy->getColumnName($name, $this->_class, $this->_platform);
+                $this->_columnTypes[$name]  = $this->_class->fieldMappings[$name]['type'];
             }
         }
 

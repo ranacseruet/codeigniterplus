@@ -8,6 +8,10 @@ to have a kick-ass start along their way to web application development.
 
 (And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
 
+Release Note For v1.1.1
+----------------------
+- Updated libraries to their latest versions.(see latest included version besides the library listing)
+
 Release Note For v1.1.0
 ----------------------
 - Added 'Twitter Bootstrap' framework. (Special Thanks to Bogdan Comarniceanu, https://www.facebook.com/bcomarniceanu)
@@ -17,21 +21,24 @@ Libraries used:
 ------------------
 - PHP libraries
 	* DX_Auth (https://github.com/EllisLab/CodeIgniter/wiki/DX-Auth)
-	* Hybridauth (social login library: http://hybridauth.sourceforge.net/)
-	* Doctrine (http://www.doctrine-project.org/)
-	* Smarty (http://www.smarty.net/)
+	* Hybridauth (social login library: http://hybridauth.sourceforge.net/, Included version 2.1.2)
+	* Doctrine (http://www.doctrine-project.org/, Included version 2.3.3)
+	* Smarty (http://www.smarty.net/ , Included version 3.1.13)
 	* HMVC (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc) 
 
 
 - Styles
-	* Twitter Bootstrap(http://twitter.github.com/bootstrap/) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
+	* Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
 
 - Javascript Libraries
-       * Jquery (http://jquery.com/)
+       * Jquery (http://jquery.com/ , Included version 2.0.0)
+       * Jquery UI (http://jqueryui.com/ , Included version 1.10.2)
        * Google map API (https://developers.google.com/maps/)
-       * Steal.js from JavascriptMVC (http://javascriptmvc.com/)
-       * jQuery Validate Plugin(http://bassistance.de/jquery-plugins/jquery-plugin-validation/)
-       * Twitter Bootstrap(http://twitter.github.com/bootstrap/)
+       * Google Map API Wrapper(http://hpneo.github.io/gmaps/, Included version 0.3.3 )
+       * Steal.js from JavascriptMVC (http://javascriptmvc.com/docs.html#!stealjs)
+       * jQuery Validate Plugin(https://github.com/jzaefferer/jquery-validation , Included version 1.11.1)
+       * jQuery Form Plugin(https://github.com/malsup/form/ , Included version 3.9)
+       * Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1)
 Features
 ----------
 - A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)

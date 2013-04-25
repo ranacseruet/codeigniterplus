@@ -59,10 +59,10 @@ abstract class AbstractSchemaManager
      *
      * @param \Doctrine\DBAL\Connection $conn
      */
-    public function __construct(\Doctrine\DBAL\Connection $conn)
+    public function __construct(\Doctrine\DBAL\Connection $conn, AbstractPlatform $platform = null)
     {
-        $this->_conn = $conn;
-        $this->_platform = $this->_conn->getDatabasePlatform();
+        $this->_conn     = $conn;
+        $this->_platform = $platform ?: $this->_conn->getDatabasePlatform();
     }
 
     /**
@@ -850,7 +850,7 @@ abstract class AbstractSchemaManager
 
         $params = $this->_conn->getParams();
         if (isset($params['defaultTableOptions'])) {
-            $schemaConfig->setDefaultTableOptions($params['defautTableOptions']);
+            $schemaConfig->setDefaultTableOptions($params['defaultTableOptions']);
         }
 
         return $schemaConfig;

@@ -3,12 +3,12 @@
     var base_url = "{$base_url}";
     var script_base_url = "{$base_url}scripts/";
 </script>
-<script type="text/javascript" language="javascript" src="{$base_url}scripts/libraries/javascriptmvc/steal.production.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script async="async" type="text/javascript" language="javascript" src="{$base_url}scripts/libraries/javascriptmvc/steal.production.js"></script>
+<script async="async" type="text/javascript" src="https://www.google.com/jsapi"></script>
 <!-- Javascript libraries Ends -->
 
 <!-- Main script -->
-<script type="text/javascript" language="javascript" src="{$base_url}scripts/index.js"></script>
+<script  async="async" type="text/javascript" language="javascript" src="{$base_url}scripts/index.js"></script>
 
 {assign var="script_file" value="scripts/"|cat:$content|cat:".js"}
 

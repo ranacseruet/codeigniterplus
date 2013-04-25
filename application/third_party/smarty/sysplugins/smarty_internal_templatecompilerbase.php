@@ -137,6 +137,14 @@ abstract class Smarty_Internal_TemplateCompilerBase {
     public $known_modifier_type = array();
 
     /**
+     * Methode to compile a Smarty template
+     *
+     * @param  mixed $_content template source
+     * @return bool true if compiling succeeded, false if it failed
+     */
+    abstract protected function doCompile($_content);
+
+    /**
      * Initialize compiler
      */
     public function __construct() {
@@ -215,6 +223,8 @@ abstract class Smarty_Internal_TemplateCompilerBase {
         } else {
             $code = $template_header . $template->createTemplateCodeFrame($_compiled_code) . $merged_code;
         }
+        // unset content because template inheritance could have replace source with parent code
+        unset ($template->source->content);
         return $code;
     }
 
@@ -592,8 +602,7 @@ abstract class Smarty_Internal_TemplateCompilerBase {
             if ((!($this->template->source->recompiled) || $this->forceNocache) && $this->template->caching && !$this->suppressNocacheProcessing &&
                     ($this->nocache || $this->tag_nocache || $this->forceNocache == 2)) {
                 $this->template->has_nocache_code = true;
-                $_output = str_replace("'", "\'", $content);
-                $_output = str_replace('\\\\', '\\\\\\\\', $_output);
+                $_output = addcslashes($content,'\'\\');
                 $_output = str_replace("^#^", "'", $_output);
                 $_output = "<?php echo '/*%%SmartyNocache:{$this->nocache_hash}%%*/" . $_output . "/*/%%SmartyNocache:{$this->nocache_hash}%%*/';?>\n";
                 // make sure we include modifer plugins for nocache code

@@ -29,7 +29,7 @@ class Home extends MY_Controller
      * @return type View
      */
     public function index()
-    {   
+    {
         return $this->view();             
     }
     

@@ -1,8 +1,8 @@
 <?php
 /*!
 * HybridAuth
-* http://hybridauth.sourceforge.net | https://github.com/hybridauth/hybridauth
-*  (c) 2009-2011 HybridAuth authors | hybridauth.sourceforge.net/licenses.html
+* http://hybridauth.sourceforge.net | http://github.com/hybridauth/hybridauth
+* (c) 2009-2012, HybridAuth authors | http://hybridauth.sourceforge.net/licenses.html 
 */
 
 /**
@@ -11,17 +11,36 @@
 class Hybrid_Storage 
 {
 	function __construct()
-	{
-		if( ! session_id() ){
-			throw new Exception( "Hybriauth require the use of 'session_start()' at the start of your script", 1 );
+	{ 
+		if ( ! session_id() ){
+			if( ! session_start() ){
+				throw new Exception( "Hybridauth requires the use of 'session_start()' at the start of your script, which appears to be disabled.", 1 );
+			}
 		}
+
+		$this->config( "php_session_id", session_id() );
+		$this->config( "version", Hybrid_Auth::$version );
 	}
 
-	public function get($key, $expiration = false) 
+	public function config($key, $value=null) 
 	{
 		$key = strtolower( $key );  
 
-		if( isset( $_SESSION["HA::STORE"][$key] ) ){ 
+		if( $value ){
+			$_SESSION["HA::CONFIG"][$key] = serialize( $value ); 
+		}
+		elseif( isset( $_SESSION["HA::CONFIG"][$key] ) ){ 
+			return unserialize( $_SESSION["HA::CONFIG"][$key] );  
+		}
+
+		return NULL; 
+	}
+
+	public function get($key) 
+	{
+		$key = strtolower( $key );  
+
+		if( isset( $_SESSION["HA::STORE"], $_SESSION["HA::STORE"][$key] ) ){ 
 			return unserialize( $_SESSION["HA::STORE"][$key] );  
 		}
 
@@ -44,8 +63,10 @@ class Hybrid_Storage
 	{
 		$key = strtolower( $key );  
 
-		if( isset( $_SESSION["HA::STORE"][$key] ) ){ 
-			unset( $_SESSION["HA::STORE"][$key] );
+		if( isset( $_SESSION["HA::STORE"], $_SESSION["HA::STORE"][$key] ) ){
+		    $f = $_SESSION['HA::STORE'];
+		    unset($f[$key]);
+		    $_SESSION["HA::STORE"] = $f;
 		} 
 	}
 
@@ -54,21 +75,28 @@ class Hybrid_Storage
 		$key = strtolower( $key ); 
 
 		if( isset( $_SESSION["HA::STORE"] ) && count( $_SESSION["HA::STORE"] ) ) {
-			foreach( $_SESSION["HA::STORE"] as $k => $v ){ 
+		    $f = $_SESSION['HA::STORE'];
+		    foreach( $f as $k => $v ){ 
 				if( strstr( $k, $key ) ){
-					unset( $_SESSION["HA::STORE"][ $k ] ); 
+					unset( $f[ $k ] ); 
 				}
 			}
+			$_SESSION["HA::STORE"] = $f;
+			
 		}
 	}
 
 	function getSessionData()
-	{ 
-		return serialize( $_SESSION["HA::STORE"] );
+	{
+		if( isset( $_SESSION["HA::STORE"] ) ){ 
+			return serialize( $_SESSION["HA::STORE"] ); 
+		}
+
+		return NULL; 
 	}
 
 	function restoreSessionData( $sessiondata = NULL )
 	{ 
 		$_SESSION["HA::STORE"] = unserialize( $sessiondata );
-	}
+	} 
 }

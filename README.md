@@ -8,6 +8,14 @@ to have a kick-ass start along their way to web application development.
 
 (And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
 
+Release Note For v2.0.0
+----------------------
+- Update codeigniter to latest version(v2.1.4)
+- Updated Hybridauth to version.(THere was some updates, but didn't see any new release tag, confused :s)
+- Update Smarty to new version.
+- Added Composer Support.(Currently only doctrine is installed from composer, but you can install anything else as well. 
+See documentation for details: https://getcomposer.org/doc/00-intro.md) 
+
 Release Note For v1.1.1
 ----------------------
 - Updated libraries to their latest versions.(see latest included version besides the library listing)
@@ -25,7 +33,7 @@ Libraries used:
 	* Doctrine (http://www.doctrine-project.org/, Included version 2.3.3)
 	* Smarty (http://www.smarty.net/ , Included version 3.1.13)
 	* HMVC (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc) 
-
+        * Composer Dependency Manager.(https://getcomposer.org/)
 
 - Styles
 	* Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
@@ -43,27 +51,32 @@ Features
 ----------
 - A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)
 - Organized directory structure for view files/stylesheets and javascript files.
+- Loading view template automatically based on the name of Controller and function.(Inspired from Asp.NET MVC architecture)
 - Load javascripts libraries in asynchronous request, helping your application get the maximum performance.
 - Load stylesheet files/javascript files automatically if exist for a specific page. No external include/import required.
 - detect domain name automatically and add to the page title. Of course option also available for add page title/meta key and 
 meta descriptions as well.
-- custom on load function for your page, where you can initialize page specific tasks.
+- custom javascript "on load" function for your page, where you can initialize page specific tasks.
 - Use ORM(doctrine) for database layer.
 - User template engine(smarty) for view layer.
 - Automatic client validation binding for forms all over the application(using jquery validate plugin). Also, custom enhanced style 
   applied to validation error message placeholder.
+- Being ahead to the new era of PHP along with Composer, the dependency manage for PHP. You can install virtually anything(which have provided 
+composer support) with it and use without any trouble.
 
 Technical Requirement
 ---------------------
-- PHP version 5.4.x
+- PHP version 5.3.x
 - Mysql version 5.x+ Database Engine(Should work with other db as well which doctrine support. But I haven't tested yet)
+- Composer(to install and use third party libraries through it, which is highly recommended).
 
 Installation
 ----------
 - Crate a new project with your chosen name. 
 - Paste all file from Codeigniterplus to your project directory.
+- Run "composer update" command to get doctrine dependency installed.
 - Change 'RewriteBase' on '.htaccess' file as per your your chosen name. If using root level domain, just remove it and keep as 'RewriteBase /'. 
-- Crate a database with your given database name in config/database.php file.
+- Create a database with your given database name in config/database.php file.
 - Now edit config/database.php file; Here change the database server, database name, user name and password as per your database server.
 - Make sure the following directories exists(create if not) and do have write permission by the application(easy to have them with '777' mode):
     * {root}/application/cache
@@ -74,6 +87,12 @@ Installation
 - run the application, register with username 'admin'. This will cause to create default two roles 'admin' and user automatically and will 
   make user 'admin' in 'admin' role. From this on, whenever a registration happens, all will be assigned default 'user' role.
   (Note: If you wish to change this functionality please do so on 'application/libraries/DX_Auth.php', starting at line 930.)
+
+If you want to avoid composer:
+To avoid using it, you just have to download and add the doctrine library files inside 'third_party' manually by yourself. also edit the
+libraries/doctrine.php, enable line 37 and then change the path in line 39 to "APPPATH.'third_party'". also, remove the 'MY_Composer' 
+from autoload.php library section. You should be fine now.
+
 
 Basic functionality
 -------------------

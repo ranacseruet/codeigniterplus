@@ -52,7 +52,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','doctrine','mysmarty','DX_Auth');
+$autoload['libraries'] = array('MY_Composer','database','doctrine','mysmarty','DX_Auth');
 
 
 /*

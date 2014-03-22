@@ -34,9 +34,9 @@ class Doctrine {
     
     // Set up class loading. You could use different autoloaders, provided by your favorite framework,
     // if you want to.
-    require_once APPPATH.'third_party/Doctrine/Common/ClassLoader.php';
+    //require_once APPPATH.'third_party/Doctrine/Common/ClassLoader.php';
 
-    $doctrineClassLoader = new ClassLoader('Doctrine',  APPPATH.'third_party');
+    $doctrineClassLoader = new ClassLoader('Doctrine',  APPPATH.'../vendor/doctrine');
     $doctrineClassLoader->register();
     $entitiesClassLoader = new ClassLoader('models', APPPATH."models/Entities");
     $entitiesClassLoader->register();
@@ -57,8 +57,8 @@ class Doctrine {
     $config->setProxyNamespace('Proxies');
 
     // Set up logger
-    $logger = new Doctrine\DBAL\Logging\CIProfiler();
-    $config->setSQLLogger($logger);
+    //$logger = new Doctrine\DBAL\Logging\CIProfiler();
+    //$config->setSQLLogger($logger);
 
     $config->setAutoGenerateProxyClasses( TRUE );   
     // Database connection information

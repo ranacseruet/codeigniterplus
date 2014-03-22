@@ -47,7 +47,8 @@ Libraries used:
        * jQuery Validate Plugin(https://github.com/jzaefferer/jquery-validation , Included version 1.11.1)
        * jQuery Form Plugin(https://github.com/malsup/form/ , Included version 3.9)
        * Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1)
-Features
+
+Features:
 ----------
 - A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)
 - Organized directory structure for view files/stylesheets and javascript files.

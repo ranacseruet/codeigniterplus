@@ -97,11 +97,10 @@ from autoload.php library section. You should be fine now.
 
 Basic functionality
 -------------------
-
-    * You will get default functionality and directory/file structure built in for three different section.
-    * Front end, or publicly viewable pages.
-    * User end, when registered members can login and have their accessible functionality.
-    * Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
+- You will get default functionality and directory/file structure built in for three different section.
+- Front end, or publicly viewable pages.
+- User end, when registered members can login and have their accessible functionality.
+- Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
 
 Your Contribution
 -------------------

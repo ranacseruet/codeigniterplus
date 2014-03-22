@@ -10,7 +10,7 @@ to have a kick-ass start along their way to web application development.
 
 Release Note For v2.0.0
 ----------------------
-- Update codeigniter to latest version(v2.1.4)
+- Update CodeIgniter to latest version(v2.1.4)
 - Updated Hybridauth to version.(THere was some updates, but didn't see any new release tag, confused :s)
 - Update Smarty to new version.
 - Added Composer Support.(Currently only doctrine is installed from composer, but you can install anything else as well. 
@@ -74,7 +74,7 @@ Technical Requirement
 Installation
 ----------
 - Crate a new project with your chosen name. 
-- Paste all file from Codeigniterplus to your project directory.
+- Paste all file from CodeIgniterPlus to your project directory.
 - Run "composer update" command to get doctrine dependency installed.
 - Change 'RewriteBase' on '.htaccess' file as per your your chosen name. If using root level domain, just remove it and keep as 'RewriteBase /'. 
 - Create a database with your given database name in config/database.php file.
@@ -98,10 +98,10 @@ from autoload.php library section. You should be fine now.
 Basic functionality
 -------------------
 
-You will get default functionality and diretory/file structure built in for three different section.
-        * Front end, or publicly viewable pages.
-        * User end, when registered members can login and have their accessible functionality.
-        * Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
+    * You will get default functionality and directory/file structure built in for three different section.
+    * Front end, or publicly viewable pages.
+    * User end, when registered members can login and have their accessible functionality.
+    * Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
 
 Your Contribution
 -------------------

@@ -106,6 +106,20 @@ class DxUsers
     private $modified;
 
     /**
+     * @var string $fbSession
+     *
+     * @Column(name="fb_session", type="string", length=1000, nullable=true)
+     */
+    private $fbSession;
+    
+    /**
+     * @var string $fbId
+     *
+     * @Column(name="fb_id", type="bigint", nullable=true)
+     */
+    private $fbId;
+    
+    /**
      * @var DxRoles
      *
      * @ManyToOne(targetEntity="DxRoles")
@@ -397,6 +411,50 @@ class DxUsers
         return $this->modified;
     }
 
+    /**
+     * Set fbSession
+     *
+     * @param string $fbSession
+     * @return DxUsers
+     */
+    public function setFbSession($fbSession)
+    {
+        $this->fbSession = $fbSession;
+        return $this;
+    }
+
+    /**
+     * Get fbSession
+     *
+     * @return string 
+     */
+    public function getFbSession()
+    {
+        return $this->fbSession;
+    }
+    
+    /**
+     * Set fbId
+     *
+     * @param integer $fbId
+     * @return DxUsers
+     */
+    public function setFbId($fbId)
+    {
+        $this->fbId = $fbId;
+        return $this;
+    }
+
+    /**
+     * Get fbId
+     *
+     * @return integer 
+     */
+    public function getFbId()
+    {
+        return $this->fbId;
+    }
+    
     /**
      * Set role
      *

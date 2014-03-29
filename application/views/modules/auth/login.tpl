@@ -1,20 +1,28 @@
-<div class="span12">
-    <form action="{$action_url}" method="post">
-        <fieldset>
-            <legend>Login</legend>
-            <label class="control-label" for="username">Username</label>
-            <input type="text" name="username" value="" id="username" size="30"  />
-            <label class="control-label" for="password">Password</label>
-            <input type="password" name="password" value="" id="password" size="30"  /> 
-            <label class="checkbox" for="remember">
-                <input type="checkbox" name="remember" value="1" id="remember" /> Remember me
-            </label>
-            <a href="{$base_url}{$forgot_password_uri}">Forgot password</a> | 
-            {if $allow_registration}
-                <a href="{$base_url}{$register_uri}">Register</a>
-            {/if}
-            <input type="submit" name="login" value="Login" class="btn"  />
-        </fieldset>
-    </form>
-</div>
+<div class="row-fluid">
+    <div class="span6">
+        <form action="{$action_url}" method="post"  class="well">
+            <fieldset>
+                <legend>Login</legend>
+                <label for="username">Username</label>
+                <input type="text" name="username" value="" class="required" size="30"  />
+                <label for="password">Password</label>
+                <input type="password" name="password" value="" class="required" size="30"  />
+
+                <label for="remember">
+                    <input type="checkbox" name="remember" value="1" id="remember" /> 
+                    Remember me
+                    <a href="{$base_url}{$forgot_password_uri}">Forgot password</a>
+                    {if $allow_registration}
+                    <a href="{$base_url}{$register_uri}">Register</a>
+                    {/if}
+                </label>
+                <input class="btn" type="submit" name="login" value="Login"  />
+            </fieldset>           
+        </form>
+    </div>
+    <div class="span6 text-center">
+        <br/><br/><br/><br/><br/><br/>
+        <a href="{$base_url}login/Facebook" class="btn btn-success">Login With Facebook</a>
+    </div>            
+</div>        
 

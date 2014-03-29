@@ -169,4 +169,22 @@ class My_DModel extends CI_Model {
         }
     }
     
+    /**
+     * Retrieve a single record according to given criteria
+     * @param type array $criteria
+     * @return type 
+     */
+    function get_by_criteria($criteria)
+    {
+        try 
+        {
+            $query=  $this->em->getRepository($this->entity)->findOneBy($criteria);
+            return $query;
+        }
+         catch(Exception $err)
+        {
+            log_message("error", $err->getMessage(), false);
+            return NULL;
+        }
+    }
 }

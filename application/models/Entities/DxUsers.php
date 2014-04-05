@@ -120,6 +120,20 @@ class DxUsers
     private $fbId;
     
     /**
+     * @var string $twitterSession
+     *
+     * @Column(name="twitter_session", type="string", length=1000, nullable=true)
+     */
+    private $twitterSession;
+    
+    /**
+     * @var string $twitterId
+     *
+     * @Column(name="twitter_id", type="bigint", nullable=true)
+     */
+    private $twitterId;
+    
+    /**
      * @var DxRoles
      *
      * @ManyToOne(targetEntity="DxRoles")
@@ -453,6 +467,50 @@ class DxUsers
     public function getFbId()
     {
         return $this->fbId;
+    }
+    
+    /**
+     * Set twitterSession
+     *
+     * @param string $twitterSession
+     * @return DxUsers
+     */
+    public function setTwitterSession($twitterSession)
+    {
+        $this->twitterSession = $twitterSession;
+        return $this;
+    }
+
+    /**
+     * Get twitterSession
+     *
+     * @return string 
+     */
+    public function getTwitterSession()
+    {
+        return $this->twitterSession;
+    }
+    
+    /**
+     * Set twitterId
+     *
+     * @param integer $twitterId
+     * @return DxUsers
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return integer 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
     }
     
     /**

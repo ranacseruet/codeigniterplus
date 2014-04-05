@@ -898,13 +898,13 @@ class DX_Auth
 
      /**
      * Validate and login social users
-     * @param type $username
      * @param type $identifier
+     * @param type $provider
      * @return type
      */
-    function facebook_login($identifier)
+    function social_login($identifier,$provider)
     {
-        $user = $this->ci->usersmodel->get_user_by_facebook_id($identifier);
+        $user = $this->ci->usersmodel->get_user_by_social_id($identifier,$provider);
         if($user)
         {
             return $this->_perform_login($user);

@@ -36,12 +36,12 @@ $config =
 
 			"Facebook" => array (
 				"enabled" => true,
-				"keys"    => array ( "id" => "381965625253070", "secret" => "8ebec838f02289d01d30d54acb736622" ),
+				"keys"    => array ( "id" => "my_id", "secret" => "my_secret" ),
 			),
 
 			"Twitter" => array (
 				"enabled" => true,
-				"keys"    => array ( "key" => "", "secret" => "" )
+				"keys"    => array ( "key" => "my_key", "secret" => "my_secret" )
 			),
 
 			// windows live

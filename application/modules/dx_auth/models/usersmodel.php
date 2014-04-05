@@ -220,10 +220,10 @@ class Usersmodel extends My_DModel
         return $this->set_user($user_id,$data);
     }
     
-    function get_user_by_facebook_id($facebook_id)
+    function get_user_by_social_id($social_id,$provider)
     {
-        $criteria=array('fbId'=>$facebook_id);
-        $query=  $this->em->getRepository($this->entity)->findOneBy($criteria);
+        $criteria   =   set_criteria_by_social_id($social_id,$provider);
+        $query      =   $this->em->getRepository($this->entity)->findOneBy($criteria);
         return $query;
     }
 }

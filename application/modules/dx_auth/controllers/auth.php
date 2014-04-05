@@ -477,12 +477,12 @@ class Auth extends MY_Controller
                     {
 
                         log_message('debug', 'controller.HAuth.login: user authenticated.');
-                        $fbSession  =   $this->hybridauthlib->getSessionData();  
-                        $user_profile = $service->getUserProfile();
-                        if ($this->dx_auth->facebook_login($user_profile->identifier))
+                        $providerSession    =   $this->hybridauthlib->getSessionData();  
+                        $user_profile =   $service->getUserProfile();
+                        if ($this->dx_auth->social_login($user_profile->identifier,$provider))
                         {  
-                            $user = $this->usersmodel->get_user_by_facebook_id($user_profile->identifier);
-                            $user->setFbSession($fbSession);
+                            $user = $this->usersmodel->get_user_by_social_id($user_profile->identifier,$provider);
+                            $user = set_social_session($user,$providerSession,$provider);        
                             $this->usersmodel->save($user);
                             // Redirect to homepage
                             redirect('', 'location');
@@ -496,11 +496,11 @@ class Auth extends MY_Controller
                             {
                                 //If user exist by email, just upda the facebook info and log user in
                                 
-                                $user->setFbId($user_profile->identifier);
-                                $user->setFbSession($fbSession);
+                                $user   =   set_social_id($user,$user_profile->identifier,$provider);
+                                $user   =   set_social_session($user,$providerSession,$provider);
                                 $this->usersmodel->save($user);
                                 //echo "DB: ".$user->getFbId()." . API: ".$user_profile->identifier;exit;
-                                if ($this->dx_auth->facebook_login($user_profile->identifier))
+                                if ($this->dx_auth->social_login($user_profile->identifier,$provider))
                                 {
 
                                         // Redirect to homepage
@@ -519,7 +519,7 @@ class Auth extends MY_Controller
                                $user = new DxUsers();
                             }
                         }
-                        
+                       // echo $this->input->post("register");
                         if($this->input->post("register"))
                         {
                             $val = $this->form_validation;
@@ -538,13 +538,13 @@ class Auth extends MY_Controller
                                 if(!$this->config->item('DX_email_activation')||$this->dx_auth->activate($temp_user->getUserName(), $temp_user->getActivationKey()))
                                 {
                                     //set facebook auth info
-                                    $user = $this->usersmodel->get_user_by_email($val->set_value('email'));
-                                    $user->setFbId($user_profile->identifier);
-                                    $user->setFbSession($fbSession);
+                                    $user   =   $this->usersmodel->get_user_by_email($val->set_value('email'));
+                                    $user   =   set_social_id($user,$user_profile->identifier,$provider);
+                                    $user   =   set_social_session($user,$providerSession,$provider);
                                     
                                     $this->usersmodel->save($user);
 
-                                    if ($this->dx_auth->facebook_login($user->getFbId()))
+                                    if ($this->dx_auth->social_login(get_social_id($user,$provider),$provider))
                                     {
                                             // Redirect to homepage
                                             redirect('', 'location');
@@ -572,7 +572,7 @@ class Auth extends MY_Controller
                         //$this->data['action_url'] = base_url()."register";
                         
                         $user->setEmail($user_profile->email);
-                        $user->setUsername(get_facebook_username($user_profile->profileURL));
+                        $user->setUsername(get_social_username($user_profile->profileURL,$provider));
                         $this->data['user'] = $user;
                         
                         return $this->view();

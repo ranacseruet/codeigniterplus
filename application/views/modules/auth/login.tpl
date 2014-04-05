@@ -23,6 +23,8 @@
     <div class="span6 text-center">
         <br/><br/><br/><br/><br/><br/>
         <a href="{$base_url}login/Facebook" class="btn btn-success">Login With Facebook</a>
+        <br/><br/>
+        <a href="{$base_url}login/Twitter" class="btn btn-success">Login With twitter</a>
     </div>            
 </div>        
 

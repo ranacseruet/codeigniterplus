@@ -219,6 +219,13 @@ class Usersmodel extends My_DModel
         $data['modified']=new DateTime();
         return $this->set_user($user_id,$data);
     }
+    
+    function get_user_by_social_id($social_id,$provider)
+    {
+        $criteria   =   set_criteria_by_social_id($social_id,$provider);
+        $query      =   $this->em->getRepository($this->entity)->findOneBy($criteria);
+        return $query;
+    }
 }
 
 
@@ -246,6 +253,9 @@ class Usersmodel extends My_DModel
 		
 		return $query;
 	}
+        
+        
+    
 /*............................unused function.......................*/
 /*
 function check_ban($user_id)

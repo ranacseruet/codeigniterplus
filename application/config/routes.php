@@ -46,6 +46,7 @@ $route['contact'] = 'home/contact';
 
 //route rules for dx_auth libraries
 $route['login'] = 'dx_auth/auth';
+$route['login/(:any)'] = 'dx_auth/auth/hauth/$1';
 $route['register'] = 'dx_auth/auth/register';
 $route['forgot_password'] = 'dx_auth/auth/forgot_password';
 

@@ -106,6 +106,34 @@ class DxUsers
     private $modified;
 
     /**
+     * @var string $fbSession
+     *
+     * @Column(name="fb_session", type="string", length=1000, nullable=true)
+     */
+    private $fbSession;
+    
+    /**
+     * @var string $fbId
+     *
+     * @Column(name="fb_id", type="bigint", nullable=true)
+     */
+    private $fbId;
+    
+    /**
+     * @var string $twitterSession
+     *
+     * @Column(name="twitter_session", type="string", length=1000, nullable=true)
+     */
+    private $twitterSession;
+    
+    /**
+     * @var string $twitterId
+     *
+     * @Column(name="twitter_id", type="bigint", nullable=true)
+     */
+    private $twitterId;
+    
+    /**
      * @var DxRoles
      *
      * @ManyToOne(targetEntity="DxRoles")
@@ -397,6 +425,94 @@ class DxUsers
         return $this->modified;
     }
 
+    /**
+     * Set fbSession
+     *
+     * @param string $fbSession
+     * @return DxUsers
+     */
+    public function setFbSession($fbSession)
+    {
+        $this->fbSession = $fbSession;
+        return $this;
+    }
+
+    /**
+     * Get fbSession
+     *
+     * @return string 
+     */
+    public function getFbSession()
+    {
+        return $this->fbSession;
+    }
+    
+    /**
+     * Set fbId
+     *
+     * @param integer $fbId
+     * @return DxUsers
+     */
+    public function setFbId($fbId)
+    {
+        $this->fbId = $fbId;
+        return $this;
+    }
+
+    /**
+     * Get fbId
+     *
+     * @return integer 
+     */
+    public function getFbId()
+    {
+        return $this->fbId;
+    }
+    
+    /**
+     * Set twitterSession
+     *
+     * @param string $twitterSession
+     * @return DxUsers
+     */
+    public function setTwitterSession($twitterSession)
+    {
+        $this->twitterSession = $twitterSession;
+        return $this;
+    }
+
+    /**
+     * Get twitterSession
+     *
+     * @return string 
+     */
+    public function getTwitterSession()
+    {
+        return $this->twitterSession;
+    }
+    
+    /**
+     * Set twitterId
+     *
+     * @param integer $twitterId
+     * @return DxUsers
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return integer 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+    
     /**
      * Set role
      *

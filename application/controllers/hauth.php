@@ -29,7 +29,7 @@ class Hauth extends MY_Controller
 				log_message('debug', "controllers.HAuth.login: service $provider enabled, trying to authenticate.");
 
                                 $service = $this->hybridauthlib->authenticate($provider);
-
+                                
 				if ($service->isUserConnected())
 				{
                                        
@@ -40,6 +40,7 @@ class Hauth extends MY_Controller
 					log_message('info', 'controllers.HAuth.login: user profile:'.PHP_EOL.print_r($user_profile, TRUE));
 
 					$data['user_profile'] = $user_profile;
+                                        print_r($service);echo "<br/>rana";
                                         print_r($user_profile);
 				}
 				else // Cannot authenticate user

@@ -448,5 +448,172 @@ class Auth extends MY_Controller
 			}
 		}
 	}
+        
+        /**
+         * Login with social media sites
+         * @todo Need to check whether registration email and facebook email are same, otherwise
+         * send activation email instead of auto activation. Also need to test whether it is working ok.
+         * @param string $provider Social auth provider
+         */
+        function hauth($provider)
+        {
+            try
+            {
+                log_message('debug', 'controllers.HAuth.login: loading HybridAuthLib');
+                $this->load->library('HybridAuthLib');
+                $this->load->model("usersmodel");
+                $this->load->model("user_temp");
+                
+                $user = new DxUsers();
+                
+                if ($this->hybridauthlib->providerEnabled($provider))
+                {
+
+                    log_message('debug', "controllers.HAuth.login: service $provider enabled, trying to authenticate.");
+
+                    $service = $this->hybridauthlib->authenticate($provider);
+
+                    if ($service->isUserConnected())
+                    {
+
+                        log_message('debug', 'controller.HAuth.login: user authenticated.');
+                        $providerSession    =   $this->hybridauthlib->getSessionData();  
+                        $user_profile =   $service->getUserProfile();
+                        if ($this->dx_auth->social_login($user_profile->identifier,$provider))
+                        {  
+                            $user = $this->usersmodel->get_user_by_social_id($user_profile->identifier,$provider);
+                            $user = set_social_session($user,$providerSession,$provider);        
+                            $this->usersmodel->save($user);
+                            // Redirect to homepage
+                            redirect('', 'location');
+                            exit;
+                        }
+                        else
+                        {
+                            $user = $this->usersmodel->get_user_by_email($user_profile->email);
+                            
+                            if($user)
+                            {
+                                //If user exist by email, just upda the facebook info and log user in
+                                
+                                $user   =   set_social_id($user,$user_profile->identifier,$provider);
+                                $user   =   set_social_session($user,$providerSession,$provider);
+                                $this->usersmodel->save($user);
+                                //echo "DB: ".$user->getFbId()." . API: ".$user_profile->identifier;exit;
+                                if ($this->dx_auth->social_login($user_profile->identifier,$provider))
+                                {
+
+                                        // Redirect to homepage
+                                        redirect('', 'location');
+                                        exit;
+                                }
+                                else 
+                                {
+                                    log_message("error","couldn't login user");
+                                }
+                                
+                            }
+                            else 
+                            {
+                               log_message("debug","couldn't found user, need to register");
+                               $user = new DxUsers();
+                            }
+                        }
+                       // echo $this->input->post("register");
+                        if($this->input->post("register"))
+                        {
+                            $val = $this->form_validation;
+
+                            // Set form validation rules
+                            $val->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->min_username.']|max_length['.$this->max_username.']|callback_username_check|alpha_dash');
+                            $val->set_rules('password', 'Password', 'trim|required|xss_clean|min_length['.$this->min_password.']|max_length['.$this->max_password.']');
+                            $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+                            // Run form validation and register user if it's pass the validation
+                            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
+                            {
+                                
+                                //activate user
+                                $temp_user = $this->user_temp->get_user_by_email($val->set_value('email'));
+                                 
+                                if(!$this->config->item('DX_email_activation')||$this->dx_auth->activate($temp_user->getUserName(), $temp_user->getActivationKey()))
+                                {
+                                    //set facebook auth info
+                                    $user   =   $this->usersmodel->get_user_by_email($val->set_value('email'));
+                                    $user   =   set_social_id($user,$user_profile->identifier,$provider);
+                                    $user   =   set_social_session($user,$providerSession,$provider);
+                                    
+                                    $this->usersmodel->save($user);
+
+                                    if ($this->dx_auth->social_login(get_social_id($user,$provider),$provider))
+                                    {
+                                            // Redirect to homepage
+                                            redirect('', 'location');
+                                            exit;
+                                    }
+                                    else
+                                    {
+                                        $this->data["status"]->message = "Login Error. Please contact administrator for help";
+                                        $this->data["status"]->success = FALSE;
+                                    }
+                                }
+                                
+                            }
+                            else 
+                            {
+                                $this->data["status"]->message = $this->dx_auth->_auth_error.  validation_errors();
+                                $this->data["status"]->success = FALSE;
+                            }
+                        }
+
+                        log_message('info', 'controllers.HAuth.login: user profile:'.PHP_EOL.print_r($user_profile, TRUE));
+                        
+                        
+                        $this->data['show_captcha'] = FALSE;
+                        //$this->data['action_url'] = base_url()."register";
+                        
+                        $user->setEmail($user_profile->email);
+                        $user->setUsername(get_social_username($user_profile->profileURL,$provider));
+                        $this->data['user'] = $user;
+                        
+                        return $this->view();
+                    }
+                    else // Cannot authenticate user
+                    {
+                        show_error('Cannot authenticate user');
+                    }
+                }
+                else // This service is not enabled.
+                {
+                        show_404($_SERVER['REQUEST_URI']);
+                }
+            }
+            catch(Exception $e)
+            {
+                $error = 'Unexpected error';
+                //handle_error($e);
+                echo $e->getMessage();
+                log_message('error', 'controllers.HAuth.login: '.$error);
+                show_error('Error authenticating user.');
+            }
+            
+        }
+        
+        /**
+         * Hybrid authentication endpoint
+         */
+        public function endpoint()
+	{
+		log_message('debug', 'controllers.HAuth.endpoint called.');
+		log_message('info', 'controllers.HAuth.endpoint: $_REQUEST: '.print_r($_REQUEST, TRUE));
+
+		if ($_SERVER['REQUEST_METHOD'] === 'GET')
+		{
+			log_message('debug', 'controllers.HAuth.endpoint: the request method is GET, copying REQUEST array into GET array.');
+			$_GET = $_REQUEST;
+		}
+
+		log_message('debug', 'controllers.HAuth.endpoint: loading the original HybridAuth endpoint script.');
+		require_once APPPATH.'/third_party/hybridauth/index.php';
+	}
 }
 ?>

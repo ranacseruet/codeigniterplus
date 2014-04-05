@@ -896,6 +896,25 @@ class DX_Auth
             return $result;
     }
 
+     /**
+     * Validate and login social users
+     * @param type $identifier
+     * @param type $provider
+     * @return type
+     */
+    function social_login($identifier,$provider)
+    {
+        $user = $this->ci->usersmodel->get_user_by_social_id($identifier,$provider);
+        if($user)
+        {
+            return $this->_perform_login($user);
+        }
+        else 
+        {
+            return FALSE;
+        }
+    }
+    
     function logout()
     {
             // Trigger event
@@ -1348,6 +1367,38 @@ class DX_Auth
     }
 		
 	/* End of Recaptcha function */
+    
+    /**
+     * the necessary data to create user's successful login session
+     * @param type $user
+     * @param type $remember
+     */
+    function _perform_login($user,$remember=FALSE)
+    {
+        // Log in user 
+        $this->_set_session($user); 												
+
+        if ($user->getNewpass())
+        {
+                // Clear any Reset Passwords
+                $this->ci->users->clear_newpass($user->getId()); 
+        }
+
+        if ($remember)
+        {
+                // Create auto login if user want to be remembered
+                $this->_create_autologin($user->getId());
+        }						
+
+        // Set last ip and last login
+        $this->_set_last_ip_and_last_login($user->getId());
+        // Clear login attempts
+        $this->_clear_login_attempts();
+
+        // Trigger event
+        $this->ci->dx_auth_event->user_logged_in($user->getId());
+        return TRUE;
+    }
 }
 
 ?>

@@ -1,6 +1,5 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-require_once(APPPATH.'third_party/smarty/Smarty.class.php');
 /**
  * CodeIgniter MySmarty Class
  *
@@ -25,10 +24,10 @@ class Mysmarty extends Smarty
     function __construct()
     {
         parent::__construct();        
-        $this->template_dir = APPPATH."/views/";
-        $this->config_dir = APPPATH."/conf/";
-        $this->compile_dir = APPPATH."/cache/";
-        $this->clearAllCache();
+        $this->template_dir = realpath(APPPATH."/views/");
+        $this->config_dir = realpath(APPPATH."/conf/");
+        $this->compile_dir = realpath(APPPATH."/cache/");
+        //$this->clearAllCache();
         $this->caching = 0; 
     }
 

@@ -1,6 +1,7 @@
 {
 	"require": {
-                "doctrine/orm": "*"
+                "doctrine/orm": "*",
+                "smarty/smarty":"dev-master"
 	},
 	"minimum-stability": "dev"
 }

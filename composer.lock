@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e06e8fd930f9ee091f3cb3489441dafa",
+    "hash": "a5b457e0574c7a98332a3d6a2e1211bf",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -579,6 +579,55 @@
             "time": "2014-06-07 13:12:09"
         },
         {
+            "name": "hybridauth/hybridauth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hybridauth/hybridauth.git",
+                "reference": "b364428543045a457f0f0d12f09a0b0990b30e92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/b364428543045a457f0f0d12f09a0b0990b30e92",
+                "reference": "b364428543045a457f0f0d12f09a0b0990b30e92",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Hybrid": "hybridauth/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(MIT or GPL-3.0+)"
+            ],
+            "authors": [
+                {
+                    "name": "Miled",
+                    "email": "hybridauth@gmail.com"
+                }
+            ],
+            "description": "Open source social sign on PHP library.",
+            "homepage": "http://hybridauth.sourceforge.net",
+            "keywords": [
+                "OpenId",
+                "facebook",
+                "google",
+                "hybridauth",
+                "login",
+                "oauth",
+                "social",
+                "twitter",
+                "yahoo"
+            ],
+            "time": "2014-06-07 20:04:55"
+        },
+        {
             "name": "smarty/smarty",
             "version": "dev-trunk",
             "source": {
@@ -688,7 +737,9 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "smarty/smarty": 20
+        "doctrine/orm": 20,
+        "smarty/smarty": 20,
+        "hybridauth/hybridauth": 20
     },
     "platform": [
 

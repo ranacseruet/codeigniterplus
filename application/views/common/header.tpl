@@ -1,6 +1,6 @@
 <div class="navbar-inner">
     <div class="container">     
-        <a class="brand" href="{$base_url}"><img src="#" width="111" height="30" alt="CodeigniterPlus" /></a>
+        <a class="brand" href="{$base_url}"><img src="{$base_url}logo.png" width="160" height="28" alt="CodeigniterPlus" /></a>
         <div class="nav-collapse">
             <ul class="nav">
                 <li><a href="{$base_url}">Home</a></li>

@@ -8,14 +8,14 @@
     {include $common_dir|cat:"inc_styles.tpl"}
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">          
+    <div class="navbar navbar navbar-default navbar-fixed-top ">          
       {include $common_dir|cat:"header.tpl"}
     </div> 
     <div class="container content">
-        <div class="span12 status">
+        <div class="col-md-12 status">
             {include $common_dir|cat:"status.tpl"}
         </div>
-        <div class="span12">
+        <div class="col-md-12">
             {include $content|cat:".tpl"}
         </div>
     </div>  

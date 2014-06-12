@@ -1,0 +1,23 @@
+{
+  "name": "codeigniterplus",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/nilacseruet/codeigniterplus",
+  "authors": [
+    "mahfuja nilufar <nila_cse_ruet@yahoo.com>"
+  ],
+  "dependencies": {
+   
+    "bootstrap": null,
+    "gmaps":null,
+    "jquery-ui":null,
+    "jquery.validation":null
+  }
+}

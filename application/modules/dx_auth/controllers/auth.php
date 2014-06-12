@@ -591,7 +591,7 @@ class Auth extends MY_Controller
             {
                 $error = 'Unexpected error';
                 //handle_error($e);
-                echo $e->getMessage();
+                //echo $e->getMessage();exit;
                 log_message('error', 'controllers.HAuth.login: '.$error);
                 show_error('Error authenticating user.');
             }
@@ -613,7 +613,8 @@ class Auth extends MY_Controller
 		}
 
 		log_message('debug', 'controllers.HAuth.endpoint: loading the original HybridAuth endpoint script.');
-		require_once APPPATH.'/third_party/hybridauth/index.php';
+		//require_once APPPATH.'/third_party/hybridauth/index.php';
+                Hybrid_Endpoint::process();
 	}
 }
 ?>

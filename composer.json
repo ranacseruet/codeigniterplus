@@ -1,6 +1,8 @@
 {
 	"require": {
-                "doctrine/orm": "*"
+                "doctrine/orm": "dev-master",
+                "smarty/smarty":"dev-master",
+                "hybridauth/hybridauth": "dev-master"
 	},
 	"minimum-stability": "dev"
 }

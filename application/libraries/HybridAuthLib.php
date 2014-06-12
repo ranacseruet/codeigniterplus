@@ -1,7 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require APPPATH.'/third_party/hybridauth/Hybrid/Auth.php';
-
 class HybridAuthLib extends Hybrid_Auth
 {
 	function __construct($config = array())

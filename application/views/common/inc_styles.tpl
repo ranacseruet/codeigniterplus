@@ -1,11 +1,10 @@
 <!-- Bootstrap starts -->
-<link type="text/css" rel="stylesheet" href="{$base_url}styles/bootstrap/bootstrap-responsive.min.css" />
-<link type="text/css" rel="stylesheet" href="{$base_url}styles/bootstrap/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="{$base_url}bower_components/bootstrap/dist/css/bootstrap.min.css" />
 <!-- Bootstrap ends -->
 
 
 <!-- Jquery UI CSS Files Starts -->
-<link type="text/css" rel="stylesheet" href="{$base_url}styles/jquery-ui/ui-lightness/jquery-ui-1.10.2.custom.min.css" />
+<link type="text/css" rel="stylesheet" href="{$base_url}bower_components/jquery-ui/themes/base/jquery-ui.css" />
 <!-- Jquery UI CSS Files Ends -->
 
 <!-- Main site layout and styles Starts -->

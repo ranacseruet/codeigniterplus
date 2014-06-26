@@ -1,12 +1,20 @@
 Codeigniterplus (The Ultimate Codeigniter Enhancements)
 =====================================
 
-Codeigniterplus is an super light-weight codeigniter based extension with various other third party libraries. This will help developers
-to have a kick-ass start along their way to web application development.
+Codeigniterplus is scaffolding for a good standard web application, built on the top of codeigniter framework and extended with various other third party frontend/backend libraries/techonlogies. 
+This will help developers to have a kick-ass quick start along their way to better managed web application development.
 
 (View Live Demo: http://demo.codesamplez.com/codeigniterplus/)
 
 (And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
+
+Release Note For v2.1.0
+----------------------
+- New Bootstrap v3 Layout.
+- Move most of the third party libraries to composer.
+- Integrate Bower package manager.
+- Facebook/Twitter social login are completely integrated! Just Add your application key/secret key on application/config/hybridauthlib.php
+  and get it working!
 
 Release Note For v2.0.0
 ----------------------
@@ -68,7 +76,9 @@ meta descriptions as well.
   applied to validation error message placeholder.
 - Being ahead to the new era of PHP along with Composer, the dependency manage for PHP. You can install virtually anything(which have provided 
 composer support) with it and use without any trouble.
-- Front-end any packages ( i.e. JavaScript libraries, HTML, CSS, images, any third party code) automatically installed with updated version by using Bower(package manager).
+- Front-end packages ( i.e. JavaScript libraries, CSS libraries) get installed via using Bower(package manager).
+- Social login integration with facebook and twitter.
+
 Technical Requirement
 ---------------------
 - PHP version 5.3.x
@@ -78,6 +88,9 @@ Technical Requirement
 
 Installation
 ----------
+
+This project is tightly coupled with composer and bower. So, make sure you have them installed and you know the basics!
+
 - Crate a new project with your chosen name. 
 - Paste all file from CodeIgniterPlus to your project directory.
 - Run "composer update" command to get doctrine dependency installed.
@@ -95,13 +108,8 @@ Installation
   make user 'admin' in 'admin' role. From this on, whenever a registration happens, all will be assigned default 'user' role.
   (Note: If you wish to change this functionality please do so on 'application/libraries/DX_Auth.php', starting at line 930.)
 
-If you want to avoid composer:
-To avoid using it, you just have to download and add the doctrine library files inside 'third_party' manually by yourself. also edit the
-libraries/doctrine.php, enable line 37 and then change the path in line 39 to "APPPATH.'third_party'". also, remove the 'MY_Composer' 
-from autoload.php library section. You should be fine now.
 
-
-Basic functionality
+Basic Site functionality
 -------------------
 - You will get default functionality and directory/file structure built in for three different section.
 - Front end, or publicly viewable pages.

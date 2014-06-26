@@ -15,6 +15,7 @@ Release Note For v2.0.0
 - Update Smarty to new version.
 - Added Composer Support.(Currently only doctrine is installed from composer, but you can install anything else as well. 
 See documentation for details: https://getcomposer.org/doc/00-intro.md) 
+- Added Bower Support.(Make sure node is installed first. See documentation for details: http://bower.io/)
 
 Release Note For v1.1.1
 ----------------------
@@ -39,14 +40,17 @@ Libraries used:
 	* Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
 
 - Javascript Libraries
-       * Jquery (http://jquery.com/ , Included version 2.0.0)
-       * Jquery UI (http://jqueryui.com/ , Included version 1.10.2)
+       * Jquery (http://jquery.com/)
+       * Jquery UI (http://jqueryui.com/)
        * Google map API (https://developers.google.com/maps/)
-       * Google Map API Wrapper(http://hpneo.github.io/gmaps/, Included version 0.3.3 )
+       * Google Map API Wrapper(http://hpneo.github.io/gmaps/)
        * Steal.js from JavascriptMVC (http://javascriptmvc.com/docs.html#!stealjs)
-       * jQuery Validate Plugin(https://github.com/jzaefferer/jquery-validation , Included version 1.11.1)
+       * jQuery Validate Plugin(https://github.com/jzaefferer/jquery-validation)
        * jQuery Form Plugin(https://github.com/malsup/form/ , Included version 3.9)
-       * Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1)
+       * Twitter Bootstrap(http://twitter.github.com/bootstrap/)
+
+- Front-end package manager
+       * Bower(http://bower.io/)
 
 Features:
 ----------
@@ -64,18 +68,20 @@ meta descriptions as well.
   applied to validation error message placeholder.
 - Being ahead to the new era of PHP along with Composer, the dependency manage for PHP. You can install virtually anything(which have provided 
 composer support) with it and use without any trouble.
-
+- Front-end any packages ( i.e. JavaScript libraries, HTML, CSS, images, any third party code) automatically installed with updated version by using Bower(package manager).
 Technical Requirement
 ---------------------
 - PHP version 5.3.x
 - Mysql version 5.x+ Database Engine(Should work with other db as well which doctrine support. But I haven't tested yet)
 - Composer(to install and use third party libraries through it, which is highly recommended).
+- Bower( to install front-end any third party packages).
 
 Installation
 ----------
 - Crate a new project with your chosen name. 
 - Paste all file from CodeIgniterPlus to your project directory.
 - Run "composer update" command to get doctrine dependency installed.
+- Run "bower install" command to get latest front-end packages installed.
 - Change 'RewriteBase' on '.htaccess' file as per your your chosen name. If using root level domain, just remove it and keep as 'RewriteBase /'. 
 - Create a database with your given database name in config/database.php file.
 - Now edit config/database.php file; Here change the database server, database name, user name and password as per your database server.

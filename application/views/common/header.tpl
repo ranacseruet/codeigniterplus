@@ -1,7 +1,12 @@
-<div class="navbar-inner col-md-offset-1">
-    <div class="container-fluid">
+    <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{$base_url}">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"> 
                 <img width="160" height="28" alt="CodeigniterPlus" src="{$base_url}images/logo.png">
             </a>
         </div>
@@ -19,4 +24,6 @@
             </ul>
         </div>
     </div>
-</div>
+
+            
+            

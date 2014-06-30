@@ -43,11 +43,12 @@ function myErrorPlacement(error, element) {
             error.css('position', 'absolute');
             error.css('left',offset.left + element.outerWidth());
             error.css('width','100%');
-            error.css('top', offset.top );
+            error.css('top', offset.top + 60);
         }
 var validateOptions = {
-        errorElement: "span",
+        /*errorElement: "span",
         wrapper: "span",
-        errorPlacement:myErrorPlacement
+        errorPlacement:myErrorPlacement*/
+        
     };        
 /******* XXX ********/    

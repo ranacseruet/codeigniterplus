@@ -33,4 +33,6 @@ input.error,select.error,textarea.error{
   padding: 0px !important;
 }
 
-
+.error{
+    color: red;
+}

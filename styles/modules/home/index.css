@@ -3,24 +3,7 @@
    TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
-.leaderboard {  
-    padding: 60px;  
-    margin-bottom: 30px;  
-    background: #D9D9D9;  
-    background-repeat:repeat;  
-    -webkit-border-radius: 6px;  
-    -moz-border-radius: 6px;  
-    border-radius: 6px;  
-}  
-.leaderboard h1 {  
-    font-size: 40px;  
-    margin-bottom: 5px;  
-    line-height: 1;  
-    letter-spacing: -1px;  
+
+.jumbotron h1{
     color:#FF6600;  
-}  
-.leaderboard p {  
-    font-size: 18px;  
-    font-weight: 200;  
-    line-height: 27px;  
 }

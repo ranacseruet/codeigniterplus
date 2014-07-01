@@ -36,3 +36,11 @@ input.error,select.error,textarea.error{
 .error{
     color: red;
 }
+
+.navbar-toggle {
+    width: 100%;
+    float: none;
+    margin: 0 auto;
+    border-width:0;
+    border-radius:0;
+}

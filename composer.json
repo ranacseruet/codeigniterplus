@@ -4,5 +4,8 @@
                 "smarty/smarty":"dev-master",
                 "hybridauth/hybridauth": "dev-master"
 	},
+        "require-dev": {
+                "phpunit/phpunit": "dev-master"
+	},
 	"minimum-stability": "dev"
 }

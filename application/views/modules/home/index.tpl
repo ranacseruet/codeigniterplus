@@ -8,7 +8,7 @@
                     <h2>The Ultimate CodeIgniter Enhance</h2>
                     <p>
                         Want to have a kickass start in your next web application project? <br />
-                        Get CodeIgniter Bundle Project, made just for You!
+                        Get CodeIgniter Bundle, make your development easier than ever!
                     </p>  
                     <p>
                         <a class="btn btn-success btn-large" href="http://github.com/ranacseruet/codeigniterplus" target="_blank">

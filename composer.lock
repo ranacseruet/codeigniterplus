@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "1f5557deade95c8a5ecd371bd720c852",
     "packages": [
@@ -11,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "0db097b6c15e2e9547b1098e1caa66aa07598c3b"
+                "reference": "e93f3b718c421daddff58c4a4af1aee574472cd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/0db097b6c15e2e9547b1098e1caa66aa07598c3b",
-                "reference": "0db097b6c15e2e9547b1098e1caa66aa07598c3b",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/e93f3b718c421daddff58c4a4af1aee574472cd6",
+                "reference": "e93f3b718c421daddff58c4a4af1aee574472cd6",
                 "shasum": ""
             },
             "require": {
@@ -44,17 +45,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -63,10 +53,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Docblock Annotations Parser",
@@ -76,7 +72,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-07-10 13:30:26"
+            "time": "2014-07-27 16:33:24"
         },
         {
             "name": "doctrine/cache",
@@ -84,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "95818515f9db846b152e3df11eb40ca27e1313f7"
+                "reference": "72121e68265cd8b37f9b69778308251f6c5133e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/95818515f9db846b152e3df11eb40ca27e1313f7",
-                "reference": "95818515f9db846b152e3df11eb40ca27e1313f7",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/72121e68265cd8b37f9b69778308251f6c5133e4",
+                "reference": "72121e68265cd8b37f9b69778308251f6c5133e4",
                 "shasum": ""
             },
             "require": {
@@ -119,17 +115,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -138,10 +123,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Caching library offering an object-oriented API for many cache backends",
@@ -150,7 +141,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2014-07-08 17:06:17"
+            "time": "2014-08-05 12:51:19"
         },
         {
             "name": "doctrine/collections",
@@ -158,12 +149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "bbe35735af4a826c1f86b04f2fd885ff5fc0f82b"
+                "reference": "432240f56fbc9a811dbf1ff8a45c1a1047ba1c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/bbe35735af4a826c1f86b04f2fd885ff5fc0f82b",
-                "reference": "bbe35735af4a826c1f86b04f2fd885ff5fc0f82b",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/432240f56fbc9a811dbf1ff8a45c1a1047ba1c0a",
+                "reference": "432240f56fbc9a811dbf1ff8a45c1a1047ba1c0a",
                 "shasum": ""
             },
             "require": {
@@ -189,17 +180,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -208,10 +188,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Collections Abstraction library",
@@ -221,7 +207,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2014-06-17 17:31:49"
+            "time": "2014-07-29 20:07:28"
         },
         {
             "name": "doctrine/common",
@@ -307,12 +293,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "8cbfefe03ff2d1a2246dfb6e98b84e4b36622e6f"
+                "reference": "6d0b0486bd6284d0886fef22fea164f7349990fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/8cbfefe03ff2d1a2246dfb6e98b84e4b36622e6f",
-                "reference": "8cbfefe03ff2d1a2246dfb6e98b84e4b36622e6f",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/6d0b0486bd6284d0886fef22fea164f7349990fb",
+                "reference": "6d0b0486bd6284d0886fef22fea164f7349990fb",
                 "shasum": ""
             },
             "require": {
@@ -346,23 +332,20 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
                 {
                     "name": "Benjamin Eberlei",
                     "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
                 }
             ],
             "description": "Database Abstraction Layer",
@@ -373,7 +356,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-07-08 17:17:49"
+            "time": "2014-08-05 18:04:50"
         },
         {
             "name": "doctrine/inflector",
@@ -510,12 +493,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "ae0ee724252b8aaf41be9b397d3db3375767095d"
+                "reference": "723529ffff4880ab97499d03b23f90911db2e0b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/ae0ee724252b8aaf41be9b397d3db3375767095d",
-                "reference": "ae0ee724252b8aaf41be9b397d3db3375767095d",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/723529ffff4880ab97499d03b23f90911db2e0b3",
+                "reference": "723529ffff4880ab97499d03b23f90911db2e0b3",
                 "shasum": ""
             },
             "require": {
@@ -554,23 +537,20 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
                 {
                     "name": "Benjamin Eberlei",
                     "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
                 }
             ],
             "description": "Object-Relational-Mapper for PHP",
@@ -579,7 +559,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-07-11 19:35:34"
+            "time": "2014-08-04 14:17:11"
         },
         {
             "name": "hybridauth/hybridauth",
@@ -587,12 +567,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hybridauth/hybridauth.git",
-                "reference": "67b48f21c706bb9a8d69ea836ca4132ffe43c4d8"
+                "reference": "2802cd48d6e1e8d7466b257344272e016b551ee6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/67b48f21c706bb9a8d69ea836ca4132ffe43c4d8",
-                "reference": "67b48f21c706bb9a8d69ea836ca4132ffe43c4d8",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/2802cd48d6e1e8d7466b257344272e016b551ee6",
+                "reference": "2802cd48d6e1e8d7466b257344272e016b551ee6",
                 "shasum": ""
             },
             "require": {
@@ -628,7 +608,7 @@
                 "twitter",
                 "yahoo"
             ],
-            "time": "2014-07-13 21:12:35"
+            "time": "2014-08-08 09:02:45"
         },
         {
             "name": "ranacseruet/smarty",
@@ -676,12 +656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "a8cc82877396aab7b028c4594dad9a4392fbf7f0"
+                "reference": "0c91f3355f251dc2ac15d9f9c5e04c014c9b729e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/a8cc82877396aab7b028c4594dad9a4392fbf7f0",
-                "reference": "a8cc82877396aab7b028c4594dad9a4392fbf7f0",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/0c91f3355f251dc2ac15d9f9c5e04c014c9b729e",
+                "reference": "0c91f3355f251dc2ac15d9f9c5e04c014c9b729e",
                 "shasum": ""
             },
             "require": {
@@ -714,19 +694,17 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-07-09 09:06:26"
+            "time": "2014-08-08 14:32:04"
         }
     ],
     "packages-dev": [
@@ -849,12 +827,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "9171bca1b0c859fe6d8b5951bf0805a741794afd"
+                "reference": "3e7a54da59d8d0a5e146933d36620bed07913c3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9171bca1b0c859fe6d8b5951bf0805a741794afd",
-                "reference": "9171bca1b0c859fe6d8b5951bf0805a741794afd",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3e7a54da59d8d0a5e146933d36620bed07913c3c",
+                "reference": "3e7a54da59d8d0a5e146933d36620bed07913c3c",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +884,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-07-09 09:03:35"
+            "time": "2014-08-06 09:48:02"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1097,12 +1075,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "39989b72a0ef50405307288a1493cbe0e7e5a605"
+                "reference": "03b19771b3a77ee4318fba3816ca75d07746176f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/39989b72a0ef50405307288a1493cbe0e7e5a605",
-                "reference": "39989b72a0ef50405307288a1493cbe0e7e5a605",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/03b19771b3a77ee4318fba3816ca75d07746176f",
+                "reference": "03b19771b3a77ee4318fba3816ca75d07746176f",
                 "shasum": ""
             },
             "require": {
@@ -1133,7 +1111,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3.x-dev"
+                    "dev-master": "4.4.x-dev"
                 }
             },
             "autoload": {
@@ -1163,7 +1141,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-07-07 11:51:41"
+            "time": "2014-08-11 10:36:40"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1171,12 +1149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "f9f31b9e7f93483fd4dbd500ee41e2e5fc0923b7"
+                "reference": "bc24fb59e997fc48f7cf8c839fe2beaedc76389b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/f9f31b9e7f93483fd4dbd500ee41e2e5fc0923b7",
-                "reference": "f9f31b9e7f93483fd4dbd500ee41e2e5fc0923b7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/bc24fb59e997fc48f7cf8c839fe2beaedc76389b",
+                "reference": "bc24fb59e997fc48f7cf8c839fe2beaedc76389b",
                 "shasum": ""
             },
             "require": {
@@ -1221,7 +1199,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-07-05 15:46:50"
+            "time": "2014-08-02 13:51:34"
         },
         {
             "name": "sebastian/comparator",
@@ -1294,21 +1272,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "ac84cfdec593945f36f24074d6ea17d296e86f76"
+                "reference": "2bbf893712032f479b11afd9f3af68abb552aff7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/ac84cfdec593945f36f24074d6ea17d296e86f76",
-                "reference": "ac84cfdec593945f36f24074d6ea17d296e86f76",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/2bbf893712032f479b11afd9f3af68abb552aff7",
+                "reference": "2bbf893712032f479b11afd9f3af68abb552aff7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -1322,13 +1303,12 @@
             ],
             "authors": [
                 {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
-                },
-                {
                     "name": "Kore Nordmann",
                     "email": "mail@kore-nordmann.de"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Diff implementation",
@@ -1336,7 +1316,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2014-05-12 05:21:40"
+            "time": "2014-08-10 08:30:31"
         },
         {
             "name": "sebastian/environment",
@@ -1498,12 +1478,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "4168f7b8e211cdc2d778ab78f35666580a6d7437"
+                "reference": "d84b97a12046b2c34e8457626b9f2b72dec0c183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/4168f7b8e211cdc2d778ab78f35666580a6d7437",
-                "reference": "4168f7b8e211cdc2d778ab78f35666580a6d7437",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/d84b97a12046b2c34e8457626b9f2b72dec0c183",
+                "reference": "d84b97a12046b2c34e8457626b9f2b72dec0c183",
                 "shasum": ""
             },
             "require": {
@@ -1526,24 +1506,20 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-07-08 12:21:41"
+            "time": "2014-08-05 09:07:51"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "doctrine/orm": 20,
@@ -1551,10 +1527,7 @@
         "hybridauth/hybridauth": 20,
         "phpunit/phpunit": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-stable": false,
+    "platform": [],
+    "platform-dev": []
 }

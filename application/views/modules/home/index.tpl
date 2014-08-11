@@ -14,6 +14,9 @@
                         <a class="btn btn-success btn-large" href="http://github.com/ranacseruet/codeigniterplus" target="_blank">
                             Fork Me At GitHub
                         </a>
+                        <br>
+                        <iframe src="http://ghbtns.com/github-btn.html?user=ranacseruet&repo=codeigniterplus&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
                     </p>
                     <a href="http://codesamplez.com/project/codeigniter-bundle" class="" target="_blank">
                         Introduction To CodeIgniterPlus

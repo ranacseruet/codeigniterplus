@@ -1,3 +1,3 @@
 <?php
-echo shell_exec("make 2>&1");
+echo shell_exec("make >application/logs/deploy.log 2>&1 </dev/null &");
 

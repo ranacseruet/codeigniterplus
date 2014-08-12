@@ -3,11 +3,11 @@
 all: update-repo dependency-install unit-tests file-permission
 
 update-repo:
-	git reset --hard
-	git pull origin master
+	sudo git reset --hard
+	sudo git pull origin master
 
 dependency-install:
-	composer update
+	sudo composer update
 
 unit-tests:
 	vendor/bin/phpunit

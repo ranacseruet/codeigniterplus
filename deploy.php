@@ -1,3 +1,3 @@
 <?php
-shell_exec("make");
+echo shell_exec("make 2>&1");
 

@@ -6,7 +6,7 @@
     <div class="span4 footer_right">
         <iframe src="http://ghbtns.com/github-btn.html?user=ranacseruet&repo=codeigniterplus&type=watch&count=true&size=large"
   allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
-        <iframe src="http://ghbtns.com/github-btn.html?user=ranacseruet&repo=codeigniterplus&type=watch&count=true&size=large"
+        <iframe src="http://ghbtns.com/github-btn.html?user=ranacseruet&repo=codeigniterplus&type=fork&count=true&size=large"
   allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
     </div>
     <div class="clear"></div>

@@ -87,21 +87,12 @@ class DxUserProfile
     /**
      * @var DxUsers
      *
-     * @OneToOne(targetEntity="DxUsers")
+     * @OneToOne(targetEntity="DxUsers", inversedBy="userProfile")
      * @JoinColumns({
      *   @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $user;
-
-
-    
-    /**
-     * @var PdMessage
-     * 
-     * @OneToMany(targetEntity="PdMessage", mappedBy="userProfile") 
-     */
-    private $messages;
     
     /**
      * Get id
@@ -155,18 +146,6 @@ class DxUserProfile
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Set city
-     *
-     * @param GdCities $city
-     * @return DxUserProfile
-     */
-    public function setCity(\GdCities $city = null)
-    {
-        $this->city = $city;
-        return $this;
     }
 
     /**

@@ -7,7 +7,11 @@ update-repo:
 	git pull origin master
 
 dependency-install:
-	/usr/local/bin/composer update
+	/usr/local/bin/composer install
+        bower install
+
+generate-proxies:
+        vendor/bin/doctrine orm:generate:proxies
 
 unit-tests:
 	vendor/bin/phpunit

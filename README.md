@@ -5,11 +5,11 @@
 Codeigniterplus is scaffolding for a good standard web application, built on the top of codeigniter framework and extended with various other third party frontend/backend libraries/techonlogies. 
 This will help developers to have a kick-ass quick start along their way to better managed web application development.
 
-[![View Live Demo](images/view-demo.jpg)] (http://demo.codesamplez.com/codeigniterplus/)
-
 See [Release Notes](https://github.com/ranacseruet/codeigniterplus/wiki/Release-Note)
 
 See The [Complete List Of Libraries Used For This Project](https://github.com/ranacseruet/codeigniterplus/wiki/List-Of-Libraries-Used-Intergated)
+
+[![View Live Demo](images/view-demo.jpg)] (http://demo.codesamplez.com/codeigniterplus/)
 
 Technical Requirement
 ---------------------
@@ -61,7 +61,7 @@ This project is tightly coupled with composer and bower. So, make sure you have 
 
 HomePage Screenshot:
 -------------------
-[Codeigniterplus Home Screen](./images/desktop_mobile.png)
+[Codeigniterplus Home Screen](https://raw.githubusercontent.com/ranacseruet/codeigniterplus/master/images/desktop_mobile.png)
 
 
 References:

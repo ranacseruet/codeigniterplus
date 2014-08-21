@@ -4,7 +4,7 @@
 
 
 <!-- Jquery UI CSS Files Starts -->
-<link type="text/css" rel="stylesheet" href="{$base_url}bower_components/jquery-ui/themes/base/jquery-ui.css" />
+<link type="text/css" rel="stylesheet" href="{$base_url}bower_components/jquery-ui/themes/smoothness/jquery-ui.css" />
 <!-- Jquery UI CSS Files Ends -->
 
 <!-- Main site layout and styles Starts -->

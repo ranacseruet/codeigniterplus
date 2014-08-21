@@ -144,4 +144,16 @@ class MY_Controller extends CI_Controller
         }
         $this->load->model("usermodel");
     }
+    
+    /**
+     *  pagination seo 
+     *  @param int $page page_no
+     */
+    function pagination_seo($page){
+        $this->data["page_no"]              =  $page;
+        $this->meta["current"]              =  $page;
+        $this->data["last_page"]            =  ceil($this->pagination->total_rows/$this->pagination->per_page);
+        $this->meta["total"]                =  $this->data["last_page"];
+        $this->data["page_url"]             =  $this->pagination->base_url;
+    }
 }

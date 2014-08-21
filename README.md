@@ -1,94 +1,44 @@
-Codeigniterplus 
-================
+#Codeigniterplus 
+
 [![Build Status](https://travis-ci.org/ranacseruet/codeigniterplus.svg)](https://travis-ci.org/ranacseruet/codeigniterplus)
 
 Codeigniterplus is scaffolding for a good standard web application, built on the top of codeigniter framework and extended with various other third party frontend/backend libraries/techonlogies. 
 This will help developers to have a kick-ass quick start along their way to better managed web application development.
 
-(View Live Demo: http://demo.codesamplez.com/codeigniterplus/)
+[![View Live Demo](images/view-demo.jpg)] (http://demo.codesamplez.com/codeigniterplus/)
 
-(And introductory post to codeigniterplus: http://codesamplez.com/project/codeigniter-bundle )
+See [Release Notes](https://github.com/ranacseruet/codeigniterplus/wiki/Release-Note)
 
-Release Note For v2.1.0
-----------------------
-- New Bootstrap v3 Layout.
-- Move most of the third party libraries to composer.
-- Integrate Bower package manager.
-- Facebook/Twitter social login are completely integrated! Just Add your application key/secret key on application/config/hybridauthlib.php
-  and get it working!
-
-Release Note For v2.0.0
-----------------------
-- Update CodeIgniter to latest version(v2.1.4)
-- Updated Hybridauth to version.(THere was some updates, but didn't see any new release tag, confused :s)
-- Update Smarty to new version.
-- Added Composer Support.(Currently only doctrine is installed from composer, but you can install anything else as well. 
-See documentation for details: https://getcomposer.org/doc/00-intro.md) 
-- Added Bower Support.(Make sure node is installed first. See documentation for details: http://bower.io/)
-
-Release Note For v1.1.1
-----------------------
-- Updated libraries to their latest versions.(see latest included version besides the library listing)
-
-Release Note For v1.1.0
-----------------------
-- Added 'Twitter Bootstrap' framework. (Special Thanks to Bogdan Comarniceanu, https://www.facebook.com/bcomarniceanu)
-- Fix few small issues/validation errors.
-	
-Libraries used:
-------------------
-- PHP libraries
-	* DX_Auth (https://github.com/EllisLab/CodeIgniter/wiki/DX-Auth)
-	* Hybridauth (social login library: http://hybridauth.sourceforge.net/, Included version 2.1.2)
-	* Doctrine (http://www.doctrine-project.org/, Included version 2.3.3)
-	* Smarty (http://www.smarty.net/ , Included version 3.1.13)
-	* HMVC (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc) 
-        * Composer Dependency Manager.(https://getcomposer.org/)
-
-- Styles
-	* Twitter Bootstrap(http://twitter.github.com/bootstrap/ , Included version 2.3.1) [ Replaced The Previous 'Blue Print CSS' (http://www.blueprintcss.org/) From version 1.1.0 ]
-
-- Javascript Libraries
-       * Jquery (http://jquery.com/)
-       * Jquery UI (http://jqueryui.com/)
-       * Google map API (https://developers.google.com/maps/)
-       * Google Map API Wrapper(http://hpneo.github.io/gmaps/)
-       * Steal.js from JavascriptMVC (http://javascriptmvc.com/docs.html#!stealjs)
-       * jQuery Validate Plugin(https://github.com/jzaefferer/jquery-validation)
-       * jQuery Form Plugin(https://github.com/malsup/form/ , Included version 3.9)
-       * Twitter Bootstrap(http://twitter.github.com/bootstrap/)
-
-- Front-end package manager
-       * Bower(http://bower.io/)
-
-Features:
-----------
-- A number of popular open source libraries to boost codeigniter development with your existing knowledge on them.(See above)
-- Organized directory structure for view files/stylesheets and javascript files.
-- Loading view template automatically based on the name of Controller and function.(Inspired from Asp.NET MVC architecture)
-- Load javascripts libraries in asynchronous request, helping your application get the maximum performance.
-- Load stylesheet files/javascript files automatically if exist for a specific page. No external include/import required.
-- detect domain name automatically and add to the page title. Of course option also available for add page title/meta key and 
-meta descriptions as well.
-- custom javascript "on load" function for your page, where you can initialize page specific tasks.
-- Use ORM(doctrine) for database layer.
-- User template engine(smarty) for view layer.
-- Automatic client validation binding for forms all over the application(using jquery validate plugin). Also, custom enhanced style 
-  applied to validation error message placeholder.
-- Being ahead to the new era of PHP along with Composer, the dependency manage for PHP. You can install virtually anything(which have provided 
-composer support) with it and use without any trouble.
-- Front-end packages ( i.e. JavaScript libraries, CSS libraries) get installed via using Bower(package manager).
-- Social login integration with facebook and twitter.
+See The [Complete List Of Libraries Used For This Project](https://github.com/ranacseruet/codeigniterplus/wiki/List-Of-Libraries-Used-Intergated)
 
 Technical Requirement
 ---------------------
 - PHP version 5.3.x
 - Mysql version 5.x+ Database Engine(Should work with other db as well which doctrine support. But I haven't tested yet)
-- Composer(to install and use third party libraries through it, which is highly recommended).
-- Bower( to install front-end any third party packages).
+- [Composer](http://getcomposer.org/) (to install and use third party libraries through it, which is highly recommended).
+- [Bower](http://bower.io/) to install front-end any third party packages.
 
-Installation
-----------
+Basic Site functionality
+-------------------
+- Set up with modern dependency based PHP development standard.
+- Set up with modern front end development stack(bower, bootstrap, jQuery).
+- You will get ready made authentication functionality
+- An organized integrated view template structure so that you don't get lost in a sea of view files.
+- Separate view root for front-end/public pages and back-end/authenticated users' pages.
+- Basic Administration panel, to perform administration functionality. You have your freedom to add as much as you want :).
+- Integrated basic SEO settings, seo for pagination.
+
+[See all available feature](https://github.com/ranacseruet/codeigniterplus/wiki/Feature-Details-Of-CodeIgniterPlus) in details also.
+
+
+*nix Installation
+-------------------
+- Change application/config/database.php according to your database server credential and commit locally(or add that file to .gitignore file).
+- Create a makefile as instructed on [deployment wiki](https://github.com/ranacseruet/codeigniterplus/wiki/Deployment) page.
+- run the 'make all' command.
+
+Windows Installation
+------------
 
 This project is tightly coupled with composer and bower. So, make sure you have them installed and you know the basics!
 
@@ -109,19 +59,22 @@ This project is tightly coupled with composer and bower. So, make sure you have 
   make user 'admin' in 'admin' role. From this on, whenever a registration happens, all will be assigned default 'user' role.
   (Note: If you wish to change this functionality please do so on 'application/libraries/DX_Auth.php', starting at line 930.)
 
-
-Basic Site functionality
+HomePage Screenshot:
 -------------------
-- You will get default functionality and directory/file structure built in for three different section.
-- Front end, or publicly viewable pages.
-- User end, when registered members can login and have their accessible functionality.
-- Admin end, to perform administration functionality. You have your freedom to add as much as you want :).
+[Codeigniterplus Home Screen](./images/desktop_mobile.png)
+
+
+References:
+----------
+And introductory post to codeigniterplus: [Introduction To CodeIgniterplus](http://codesamplez.com/project/codeigniter-bundle )
+
 
 Your Contribution
 -------------------
 
-I will love to get your contribution on this project. If you are interested, please feel free to add issues/bugs as you found from the 
-project(https://github.com/ranacseruet/codeigniterplus/issues?state=open). Also, if you have a new idea which can improve its usability
-or functionality, please add them there too. If you are interested to work and contribute the code, add yourself as assignee
-(or let me know if you need my help), fork the repo, make changes, commit and make an pull request.
+- [Report a bug](https://github.com/ranacseruet/codeigniterplus/labels/bug)
+- [Feature Suggestion](https://github.com/ranacseruet/codeigniterplus/labels/enhancement)
+
+
+You are always welcome to fork the repository, modify/add what you have in mind and make an pull request.
 

@@ -37,6 +37,9 @@ class MY_Controller extends CI_Controller
         //$this->output->enable_profiler();
         $this->load->library('app/formvalidator');
         $this->load->library("session");
+        
+        $this->data["pagination_helper"] = NULL;
+        $this->data["iteration"]         = NULL;
     }
     
     /**

@@ -9,7 +9,7 @@ window.onload = function(){
 }
 
 function loadJqueryPlugins(){
-    steal(base_url+"bower_components/jquery-ui/ui/jquery-ui.custom.js",
+    steal(base_url+"bower_components/jquery-ui/jquery-ui.min.js",
           script_base_url+"libraries/jquery/plugins/jquery.form.js",
           base_url+"bower_components/bootstrap/dist/js/bootstrap.min.js",
           base_url+"bower_components/jquery.validation/dist/jquery.validate.js",jqueryPluginsLoaded);

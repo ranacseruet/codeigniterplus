@@ -1,8 +1,11 @@
 {
-	"require": {
-                "doctrine/orm": "dev-master",
-                "smarty/smarty":"dev-master",
-                "hybridauth/hybridauth": "dev-master"
-	},
-	"minimum-stability": "dev"
+    "require": {
+            "doctrine/orm": "dev-master",
+            "ranacseruet/smarty":"dev-master",
+            "hybridauth/hybridauth": "dev-master"
+    },
+    "require-dev": {
+            "phpunit/phpunit": "dev-master"
+    },
+    "minimum-stability": "dev"
 }

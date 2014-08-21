@@ -3,9 +3,7 @@
   <head>
     <title>{$page->title}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="{$page->key}" />
-    <meta name="description" content="{$page->desc}" />
+    {include $common_dir|cat:"inc_meta.tpl"}
     {include $common_dir|cat:"inc_styles.tpl"}
   </head>
   <body>  

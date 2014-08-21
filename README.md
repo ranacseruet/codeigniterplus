@@ -1,5 +1,6 @@
-Codeigniterplus (The Ultimate Codeigniter Enhancements)
-=====================================
+Codeigniterplus 
+================
+[![Build Status](https://travis-ci.org/ranacseruet/codeigniterplus.svg)](https://travis-ci.org/ranacseruet/codeigniterplus)
 
 Codeigniterplus is scaffolding for a good standard web application, built on the top of codeigniter framework and extended with various other third party frontend/backend libraries/techonlogies. 
 This will help developers to have a kick-ass quick start along their way to better managed web application development.

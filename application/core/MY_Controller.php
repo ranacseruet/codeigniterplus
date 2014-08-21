@@ -86,7 +86,12 @@ class MY_Controller extends CI_Controller
         $method = $this->getFunctionName();        
         $this->prefix = $this->prefix.$method."_";
         //loading the seo_properties
-        $this->page->title .= $this->config->item($this->prefix."title");
+        if(isset($this->page->title)) {
+            $this->page->title .= $this->config->item($this->prefix."title");
+        }
+        else {
+            $this->page->title = $this->config->item($this->prefix."title");
+        }
         $this->page->title .= empty($this->page->title)?"":" | ";
         $this->page->title .= get_domain();
                 
@@ -138,5 +143,17 @@ class MY_Controller extends CI_Controller
             exit;
         }
         $this->load->model("usermodel");
+    }
+    
+    /**
+     *  pagination seo 
+     *  @param int $page page_no
+     */
+    function pagination_seo($page){
+        $this->data["page_no"]              =  $page;
+        $this->meta["current"]              =  $page;
+        $this->data["last_page"]            =  ceil($this->pagination->total_rows/$this->pagination->per_page);
+        $this->meta["total"]                =  $this->data["last_page"];
+        $this->data["page_url"]             =  $this->pagination->base_url;
     }
 }

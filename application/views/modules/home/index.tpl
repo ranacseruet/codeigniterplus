@@ -1,33 +1,18 @@
-
-<div class="jumbotron"> 
-    <div class="container">
-        <h1 class="text-danger">Welcome To CodeIgniterPlus!</h1>
-        <div class="row">
-            <div class="container">
-                <div class="col-md-6">
-                    <h2>The Ultimate CodeIgniter Enhance</h2>
-                    <p>
-                        Want to have a kickass start in your next web application project? <br />
-                        Get CodeIgniterPlus, make your wep app development easier than ever!
-                    </p>  
-                    <p>
-                        <a class="btn btn-success btn-large" href="http://github.com/ranacseruet/codeigniterplus" target="_blank">
-                            Fork Me At GitHub
-                        </a>
-                        <br><br>
-                        <iframe src="http://ghbtns.com/github-btn.html?user=ranacseruet&repo=codeigniterplus&type=watch&count=true&size=large"
-  allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
-                    </p>
-                    Also
-                    <a href="http://codesamplez.com/project/codeigniter-bundle" class="" target="_blank">
-                        Read The Introduction To CodeIgniterPlus
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <img class="img-responsive pull-right" src="{$base_url}images/desktop_mobile.png" alt="Desktop & Mobile Template">
-
-                </div>
-            </div>
-        </div>
+<div class="row">  
+    <div class="col-md-12">
+    <div class="col-md-6">
+        <h1 class="strong">Welcome To Demo.CodeSamplez.com!</h1>
+        <h3>Expreience The Web Development Tutorials Live</h3>
+        <p>Here you will able to explore the live hosted functionality examples of   <br />
+            my programming tutorials which are specifically related to web development!</p>  
+        <p>
+            <a class="btn btn-success btn-large btn-lg" href="http://codesamplez.com" target="_blank">
+                Visit The Tutorials First
+            </a>
+        </p>
     </div>
+    <div class="col-md-6 pull-right">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodesamplez&amp;width=292&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=276364829074878" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:258px;" allowTransparency="true"></iframe>
+    </div>
+      </div> 
 </div>

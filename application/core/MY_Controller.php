@@ -60,8 +60,8 @@ class MY_Controller extends CI_Controller
         $this->mysmarty->assign("common_dir", "common/");
         $this->mysmarty->assign('base_url', base_url());
         $this->mysmarty->assign('cdn_url', $this->config->item("cdn_url")?:base_url());
-        $this->mysmarty->assign('is_logged_in', $this->dx_auth->is_logged_in());
-        $this->mysmarty->assign("is_admin", $this->dx_auth->is_admin());
+        $this->mysmarty->assign('is_logged_in', isset($this->dx_auth)?$this->dx_auth->is_logged_in():false);       
+        $this->mysmarty->assign("is_admin", isset($this->dx_auth)?$this->dx_auth->is_admin():false);
         //set an empty message by default
         $this->mysmarty->assign('status', "");
         

@@ -46,11 +46,23 @@ class Doctrine {
 
     // Set up caches
     $config = new Configuration;
-    $cache = new ArrayCache;
-    $config->setMetadataCacheImpl($cache);
+        if(class_exists('Memcached')) {
+        $memcache = new \Memcached();
+        $memcache->addServer('127.0.0.1', 11211);
+        $cacheDriver = new \Doctrine\Common\Cache\MemcachedCache();
+        $cacheDriver->setMemcached($memcache);
+    }
+    else if(extension_loaded('apc') && ini_get('apc.enabled')) {
+        $cacheDriver = new \Doctrine\Common\Cache\ApcCache();
+    }
+    else {
+        $cacheDriver = new \Doctrine\Common\Cache\ArrayCache();
+    }
+    
+    $config->setMetadataCacheImpl($cacheDriver);
     $driverImpl = $config->newDefaultAnnotationDriver(array(APPPATH.'models/Entities'));
     $config->setMetadataDriverImpl($driverImpl);
-    $config->setQueryCacheImpl($cache);
+    $config->setQueryCacheImpl($cacheDriver);
 
     // Proxy configuration
     $config->setProxyDir(APPPATH.'models/proxies');

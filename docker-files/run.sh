@@ -14,6 +14,6 @@ else
     echo "=> Using an existing volume of MySQL"
 fi
 
-mysql -uadmin -proot -h localhost -P 3306 -e "CREATE DATABASE codeigniterplus;"
+mysql -uroot -h localhost -P 3306 -e "CREATE DATABASE codeigniterplus;"
 
 exec supervisord -n

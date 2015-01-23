@@ -9,7 +9,7 @@ See [Release Notes](https://github.com/ranacseruet/codeigniterplus/wiki/Release-
 
 See The [Complete List Of Libraries Used For This Project](https://github.com/ranacseruet/codeigniterplus/wiki/List-Of-Libraries-Used-Intergated)
 
-[![View Live Demo](images/view-demo.jpg)] (http://demo.codesamplez.com/codeigniterplus/)
+[View Live Demo](http://demo.codesamplez.com/codeigniterplus/)
 
 Technical Requirement
 ---------------------
@@ -68,6 +68,13 @@ References:
 ----------
 And introductory post to codeigniterplus: [Introduction To CodeIgniterplus](http://codesamplez.com/project/codeigniter-bundle )
 
+Future Considerations:
+----------------------
+
+- Front End enhancements: integrate [requirejs](http://requirejs.org/), [angularjs](https://angularjs.org/), [grunt](http://gruntjs.com/).
+- Unit Tests: add necessary [PHPUnit](http://phpunit.de/) tests for custom classes.
+- Acceptance/Functional Test: Using [Codeception](http://codeception.com/).
+- Support for other view engine: Current view engine logic already seperated to MY_Controller class. Additional logic should be integrated to generalize view engine choice, so that developers can use other engines they like, such as [twig](http://twig.sensiolabs.org/) 
 
 Your Contribution
 -------------------
@@ -75,6 +82,5 @@ Your Contribution
 - [Report a bug](https://github.com/ranacseruet/codeigniterplus/labels/bug)
 - [Feature Suggestion](https://github.com/ranacseruet/codeigniterplus/labels/enhancement)
 
-
-You are always welcome to fork the repository, modify/add what you have in mind and make an pull request.
+You can choose from the above 'Future considerations' section as well. In that case, you can optionally create a [issue](https://github.com/ranacseruet/codeigniterplus/issues) mentioning which feature you want to work on. Then, fork the repo, implement the feature/make changes and create a pull request. Thanks!
 

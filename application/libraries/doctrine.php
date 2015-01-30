@@ -46,7 +46,9 @@ class Doctrine {
 
     // Set up caches
     $config = new Configuration;
-        if(class_exists('Memcached')) {
+    //TODO this approach won't work always, developers may habe memcached installed, but not interested
+    //to use or server not running. Need to fix.
+    if(class_exists('Memcached')) {
         $memcache = new \Memcached();
         $memcache->addServer('127.0.0.1', 11211);
         $cacheDriver = new \Doctrine\Common\Cache\MemcachedCache();

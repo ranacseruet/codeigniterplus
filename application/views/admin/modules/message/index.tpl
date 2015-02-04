@@ -31,7 +31,9 @@
     </table>       
 <br />
 <div class="clear">
-{$pagination_helper->create_links()}
+    <ul class="pagination">
+        {$pagination_helper->create_links()}
+    </ul>
 &nbsp;
 <input type="submit" name="delete" value="Delete selected" class="btn btn-danger" />
 <a href="{$base_url}admin/message/add" class="btn btn-success">Ad New</a>

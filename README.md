@@ -71,6 +71,7 @@ And introductory post to codeigniterplus: [Introduction To CodeIgniterplus](http
 Future Considerations:
 ----------------------
 
+- Docker Integration(in progress!)
 - Front End enhancements: integrate [requirejs](http://requirejs.org/), [angularjs](https://angularjs.org/), [grunt](http://gruntjs.com/).
 - Unit Tests: add necessary [PHPUnit](http://phpunit.de/) tests for custom classes.
 - Acceptance/Functional Test: Using [Codeception](http://codeception.com/).

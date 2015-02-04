@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"> 
+            <a class="navbar-brand" href="{$base_url}"> 
                 <img width="160" height="28" alt="CodeigniterPlus" src="{$base_url}images/logo.png">
             </a>
         </div>

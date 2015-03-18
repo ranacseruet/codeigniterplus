@@ -1,13 +1,14 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HybridAuthLib extends Hybrid_Auth
-{
+class HybridAuthLib extends Hybrid_Auth {
+
 	function __construct($config = array())
 	{
-		$ci =& get_instance();
+		$ci = & get_instance();
 		$ci->load->helper('url_helper');
 
-		$config['base_url'] = site_url((config_item('index_page') == '' ? SELF : '').$config['base_url']);
+		$config['base_url'] = site_url((config_item('index_page') == '' ? SELF : '') . $config['base_url']);
 
 		parent::__construct($config);
 
@@ -27,6 +28,3 @@ class HybridAuthLib extends Hybrid_Auth
 		return isset(parent::$config['providers'][$provider]) && parent::$config['providers'][$provider]['enabled'];
 	}
 }
-
-/* End of file HybridAuthLib.php */
-/* Location: ./application/libraries/HybridAuthLib.php */

@@ -1,18 +1,20 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 use \PdMessage;
 
 /**
- * City model
- * @final Messagemodel
+ * Message model
+ * 
+ * @final    Messagemodel
  * @category model
- * @author Rana
+ * @author   Rana
  */
-class Messagemodel extends My_DModel{
-    //put your code here
+class Messagemodel extends My_DModel {
 
-
-    function __construct() {
-        parent::__construct();
-        $this->init("PdMessage",$this->doctrine->em);
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->init("PdMessage", $this->doctrine->em);
+	}
 }

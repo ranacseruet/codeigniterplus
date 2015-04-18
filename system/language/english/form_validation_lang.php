@@ -23,6 +23,11 @@ $lang['is_natural_no_zero']	= "The %s field must contain a number greater than z
 $lang['decimal']			= "The %s field must contain a decimal number.";
 $lang['less_than']			= "The %s field must contain a number less than %s.";
 $lang['greater_than']		= "The %s field must contain a number greater than %s.";
+/*Added new validation messages used in MY_Form_validation library*/
+$lang['phone_number']		= "The %s field is invalid.";
+$lang['valid_url']			= "The %s field is invalid.";
+$lang['password']			= "The %s field is invalid.";
+$lang['pass_confirm']		= "The %s field didn't match password field";
 
 
 /* End of file form_validation_lang.php */
